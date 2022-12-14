@@ -4,7 +4,7 @@ This repository is a boilerplate showing how to create a native Pulumi provider.
 
 ## Authoring a Pulumi Native Provider
 
-This boilerplate creates a working Pulumi-owned provider named `xyz`.
+This boilerplate creates a working Pulumi-owned provider named `pucurl`.
 It implements a random number generator that you can [build and test out for yourself](#test-against-the-example) and then replace the Random code with code specific to your provider.
 
 
