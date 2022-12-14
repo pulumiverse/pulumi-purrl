@@ -1,25 +1,32 @@
-PROJECT_NAME := Pulumi Xyz Resource Provider
+PROJECT_NAME := Pulumi pucurl Resource Provider
 
-PACK             := xyz
+PACK             := pucurl
 PACKDIR          := sdk
-PROJECT          := github.com/pulumi/pulumi-xyz
-NODE_MODULE_NAME := @pulumi/xyz
-NUGET_PKG_NAME   := Pulumi.Xyz
+PROJECT          := github.com/dirien/pulumi-pucurl
+NODE_MODULE_NAME := @pulumi/pucurl
+NUGET_PKG_NAME   := Pulumi.pucurl
 
 PROVIDER        := pulumi-resource-${PACK}
 VERSION         ?= $(shell pulumictl get version)
 PROVIDER_PATH   := provider
 VERSION_PATH     := ${PROVIDER_PATH}/cmd/main.Version
 
+SCHEMA_FILE     := provider/cmd/pulumi-resource-pucurl/schema.json
 GOPATH			:= $(shell go env GOPATH)
 
 WORKING_DIR     := $(shell pwd)
 TESTPARALLELISM := 4
 
+
 ensure::
 	cd provider && go mod tidy
 	cd sdk && go mod tidy
-	cd tests && go mod tidy
+	cd examples && go mod tidy
+
+codegen::
+	(cd provider && VERSION=${VERSION} go generate cmd/${PROVIDER}/main.go)
+	(cd provider && go build -o $(WORKING_DIR)/bin/${CODEGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/$(CODEGEN))
+	$(WORKING_DIR)/bin/${CODEGEN} $(SCHEMA_FILE) --version ${VERSION}
 
 provider::
 	(cd provider && go build -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" $(PROJECT)/${PROVIDER_PATH}/cmd/$(PROVIDER))
@@ -33,31 +40,29 @@ test_provider::
 dotnet_sdk:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
 dotnet_sdk::
 	rm -rf sdk/dotnet
-	pulumi package gen-sdk $(WORKING_DIR)/bin/$(PROVIDER) --language dotnet
+	pulumi package gen-sdk --language dotnet $(SCHEMA_FILE)
 	cd ${PACKDIR}/dotnet/&& \
 		echo "${DOTNET_VERSION}" >version.txt && \
 		dotnet build /p:Version=${DOTNET_VERSION}
 
-go_sdk:: $(WORKING_DIR)/bin/$(PROVIDER)
+go_sdk::
 	rm -rf sdk/go
-	pulumi package gen-sdk $(WORKING_DIR)/bin/$(PROVIDER) --language go
+	pulumi package gen-sdk --language go $(SCHEMA_FILE)
 
 nodejs_sdk:: VERSION := $(shell pulumictl get version --language javascript)
 nodejs_sdk::
 	rm -rf sdk/nodejs
-	pulumi package gen-sdk $(WORKING_DIR)/bin/$(PROVIDER) --language nodejs
+	pulumi package gen-sdk --language nodejs $(SCHEMA_FILE)
 	cd ${PACKDIR}/nodejs/ && \
 		yarn install && \
-		yarn run tsc && \
-		cp -R scripts/ bin && \
-		cp ../../README.md ../../LICENSE package.json yarn.lock bin/ && \
-		sed -i.bak 's/$${VERSION}/$(VERSION)/g' bin/package.json && \
-		rm ./bin/package.json.bak
+		yarn run tsc
+	cp README.md LICENSE ${PACKDIR}/nodejs/package.json ${PACKDIR}/nodejs/yarn.lock ${PACKDIR}/nodejs/bin/
+	sed -i.bak 's/$${VERSION}/$(VERSION)/g' ${PACKDIR}/nodejs/bin/package.json
 
 python_sdk:: PYPI_VERSION := $(shell pulumictl get version --language python)
 python_sdk::
 	rm -rf sdk/python
-	pulumi package gen-sdk $(WORKING_DIR)/bin/$(PROVIDER) --language python
+	pulumi package gen-sdk --language python $(SCHEMA_FILE)
 	cp README.md ${PACKDIR}/python/
 	cd ${PACKDIR}/python/ && \
 		python3 setup.py clean --all 2>/dev/null && \
@@ -66,8 +71,18 @@ python_sdk::
 		rm ./bin/setup.py.bak && \
 		cd ./bin && python3 setup.py build sdist
 
+bin/pulumi-java-gen::
+	echo pulumi-java-gen is no longer necessary
+
+java_sdk:: PACKAGE_VERSION := $(shell pulumictl get version --language generic)
+java_sdk::
+	rm -rf sdk/java
+	pulumi package gen-sdk --language java $(SCHEMA_FILE)
+	cd sdk/java/ && \
+		gradle --console=plain build
+
 .PHONY: build
-build:: provider dotnet_sdk go_sdk nodejs_sdk python_sdk
+build:: codegen provider #dotnet_sdk go_sdk nodejs_sdk python_sdk java_sdk
 
 # Required for the codegen action that runs in pulumi/pulumi
 only_build:: build
@@ -82,7 +97,7 @@ install:: install_nodejs_sdk install_dotnet_sdk
 	cp $(WORKING_DIR)/bin/${PROVIDER} ${GOPATH}/bin
 
 
-GO_TEST 	 := go test -v -count=1 -cover -timeout 2h -parallel ${TESTPARALLELISM}
+GO_TEST := go test -v -count=1 -cover -timeout 2h -parallel ${TESTPARALLELISM}
 
 test_all::
 	cd provider/pkg && $(GO_TEST) ./...
@@ -102,6 +117,12 @@ install_python_sdk::
 install_go_sdk::
 	#target intentionally blank
 
+install_java_sdk::
+	#target intentionally blank
+
 install_nodejs_sdk::
 	-yarn unlink --cwd $(WORKING_DIR)/sdk/nodejs/bin
 	yarn link --cwd $(WORKING_DIR)/sdk/nodejs/bin
+
+test::
+	cd examples && go test -v -tags=all -timeout 2h
