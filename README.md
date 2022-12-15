@@ -2,6 +2,16 @@
 
 This provider is designed to be a flexible extension of your Pulumi code to make API calls to your target endpoint. PuCurl is useful when a provider does not have a resource or data source that you require, so PuCurl can be used to make substitute API calls.
 
+## Provider Binary
+
+The PuCurl provider binary is a third party binary. It can be installed using the pulumi plugin command.
+
+```bash
+pulumi plugin install resource pucurl <version> --server github://api.github.com/dirien
+```
+
+Replace the version string with your desired version.
+
 ## Installing
 
 This package is available for several languages/platforms:
