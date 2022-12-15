@@ -1,6 +1,7 @@
 package provider
 
 import (
+	"github.com/dirien/pulumi-pucurl/provider/pkg/provider/pucurl"
 	"strings"
 
 	"github.com/blang/semver"
@@ -38,7 +39,7 @@ func NewProvider() p.Provider {
 				},
 				"go": map[string]any{
 					"generateResourceContainerTypes": true,
-					"importBasePath":                 "github.com/dirien/pulumi-pucurl/sdk/go/command",
+					"importBasePath":                 "github.com/dirien/pulumi-pucurl/sdk/go/pucurl",
 				},
 				"nodejs": map[string]any{
 					"dependencies": map[string]string{
@@ -68,11 +69,11 @@ func NewProvider() p.Provider {
 				// 1. This type is an interface that implements the logic for the Resource
 				//    these methods include `Create`, `Update`, `Delete`, and `WireDependencies`.
 				//    `WireDependencies` should be implemented to preserve the secretness of an input
-				*PuCurl,
+				*pucurl.PuCurl,
 				// 2. The type of the Inputs/Arguments to supply to the Resource.
-				PuCurlInputs,
+				pucurl.PuCurlInputs,
 				// 3. The type of the Output/Properties/Fields of a created Resource.
-				PuCurlOutputs,
+				pucurl.PuCurlOutputs,
 			](),
 		},
 	})

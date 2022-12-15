@@ -7,9 +7,10 @@ NODE_MODULE_NAME := @pulumi/pucurl
 NUGET_PKG_NAME   := Pulumi.pucurl
 
 PROVIDER        := pulumi-resource-${PACK}
+CODEGEN         := pulumi-gen-${PACK}
 VERSION         ?= $(shell pulumictl get version)
 PROVIDER_PATH   := provider
-VERSION_PATH     := ${PROVIDER_PATH}/cmd/main.Version
+VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 
 SCHEMA_FILE     := provider/cmd/pulumi-resource-pucurl/schema.json
 GOPATH			:= $(shell go env GOPATH)
@@ -82,7 +83,7 @@ java_sdk::
 		gradle --console=plain build
 
 .PHONY: build
-build:: codegen provider #dotnet_sdk go_sdk nodejs_sdk python_sdk java_sdk
+build:: codegen provider go_sdk dotnet_sdk nodejs_sdk python_sdk java_sdk
 
 # Required for the codegen action that runs in pulumi/pulumi
 only_build:: build

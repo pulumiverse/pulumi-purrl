@@ -4,7 +4,9 @@ go 1.19
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
-	github.com/pulumi/pulumi-go-provider v0.8.0
+	github.com/pulumi/pulumi-go-provider v0.9.0
+	github.com/pulumi/pulumi-go-provider/integration v0.9.0
+	github.com/pulumi/pulumi/sdk/v3 v3.49.0
 )
 
 require (
@@ -17,7 +19,6 @@ require (
 	github.com/cheggaaa/pb v1.0.29 // indirect
 	github.com/cloudflare/circl v1.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/dirien/pulumi-pucurl v0.0.0-20221214121918-87d98284367e // indirect
 	github.com/djherbis/times v1.5.0 // indirect
 	github.com/edsrzf/mmap-go v1.1.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
@@ -49,7 +50,6 @@ require (
 	github.com/pkg/term v1.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/pulumi/pulumi/pkg/v3 v3.49.0 // indirect
-	github.com/pulumi/pulumi/sdk/v3 v3.49.0 // indirect
 	github.com/rivo/uniseg v0.4.3 // indirect
 	github.com/rogpeppe/go-internal v1.9.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
