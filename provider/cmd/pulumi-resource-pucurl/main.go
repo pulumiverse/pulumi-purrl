@@ -25,10 +25,7 @@ import (
 )
 
 func main() {
-	version := version.Version
-	if strings.HasPrefix(version, "v") {
-		version = version[1:]
-	}
+	version := strings.TrimPrefix(version.Version, "v")
 
 	// This method defines the provider implemented in this repository.
 	pucurlProvider := pucurl.NewProvider()

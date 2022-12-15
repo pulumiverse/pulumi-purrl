@@ -80,9 +80,7 @@ func NewProvider() p.Provider {
 }
 
 func Schema(version string) (string, error) {
-	if strings.HasPrefix(version, "v") {
-		version = version[1:]
-	}
+	version = strings.TrimPrefix(version, "v")
 	s, err := integration.NewServer("pucurl", semver.MustParse(version), NewProvider()).
 		GetSchema(p.GetSchemaRequest{})
 	return s.Schema, err

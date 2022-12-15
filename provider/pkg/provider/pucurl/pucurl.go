@@ -66,7 +66,7 @@ func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers 
 
 	request, err := http.NewRequestWithContext(context.TODO(), *method, *url, bytes.NewBuffer([]byte(*body)))
 	if err != nil {
-		return nil, errors.New(fmt.Sprintf("error creating request: %v", err))
+		return nil, fmt.Errorf("error creating request: %v", err)
 	}
 
 	if headers != nil {
@@ -84,12 +84,12 @@ func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers 
 
 	resp, err := Client.Do(request)
 	if err != nil {
-		return nil, errors.New(fmt.Sprintf("error calling API endpoint: %v", err))
+		return nil, fmt.Errorf("error calling API endpoint: %v", err)
 	}
 	defer resp.Body.Close()
 	respBody, readErr := io.ReadAll(resp.Body)
 	if readErr != nil {
-		return nil, errors.New(fmt.Sprintf("error reading response body: %v", readErr))
+		return nil, fmt.Errorf("error reading response body: %v", readErr)
 	}
 
 	code := fmt.Sprintf("%v", resp.StatusCode)
