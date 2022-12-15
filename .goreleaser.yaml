@@ -22,12 +22,30 @@ builds:
       - -X github.com/pulumiverse/pulumi-aquasec/provider/pkg/version.Version={{.Tag }}
     main: ./cmd/pulumi-resource-pucurl/
 
-changelog:
-  skip: true
-
 release:
   disable: false
   prerelease: auto
 
 snapshot:
   name_template: '{{ .Tag }}-SNAPSHOT'
+
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - '^test:'
+      - '^chore'
+      - Merge pull request
+      - Merge remote-tracking branch
+      - Merge branch
+      - go mod tidy
+  groups:
+    - title: 'New Features'
+      regexp: "^.*feat[(\\w)]*:+.*$"
+      order: 0
+    - title: 'Bug fixes'
+      regexp: "^.*fix[(\\w)]*:+.*$"
+      order: 10
+    - title: Other work
+      order: 999

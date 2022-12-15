@@ -14,3 +14,5 @@ provider/**/schema-embed.json
 ./bin
 .idea
 **/dist
+**/.gradle
+**/build
