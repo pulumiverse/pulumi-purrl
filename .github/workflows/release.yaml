@@ -83,7 +83,7 @@ jobs:
         with:
           python-version: ${{matrix.pythonversion}}
       - name: Build SDK
-        run: make build_${{ matrix.language }}
+        run: make ${{ matrix.language }}_sdk
       - name: Check worktree clean
         run: |
           git update-index -q --refresh
