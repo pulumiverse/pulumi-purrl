@@ -11,13 +11,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @pulumiverse/aquasec
+TODO
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @pulumiverse/aquasec
+TODO
 ```
 
 ### Python
@@ -25,7 +25,7 @@ yarn add @pulumiverse/aquasec
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumiverse_aquasec
+TODO
 ```
 
 ### Go
@@ -33,7 +33,7 @@ pip install pulumiverse_aquasec
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/pulumiverse/pulumi-aquasec/sdk/go/...
+go get github.com/dirien/pulumi-pucurl/sdk/go/...
 ```
 
 ### .NET
@@ -41,5 +41,5 @@ go get github.com/pulumiverse/pulumi-aquasec/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package Pulumiverse.Aquasec
+TODO
 ```
