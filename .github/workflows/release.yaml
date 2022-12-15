@@ -35,7 +35,7 @@ jobs:
         with:
           go-version: ${{matrix.goversion}}
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@1e02892ca46fae0062342f787ed9d6dae25aedae # tag=v1.8.0
+        uses: jaxxstorm/action-install-gh-release@f2bcf7617d36fea65f0a9d261d4947b19947956e # tag=v1.9.0
         with:
           repo: pulumi/pulumictl
       - name: Set PreRelease Version
@@ -64,7 +64,7 @@ jobs:
         with:
           go-version: ${{ matrix.goversion }}
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@1e02892ca46fae0062342f787ed9d6dae25aedae # tag=v1.8.0
+        uses: jaxxstorm/action-install-gh-release@f2bcf7617d36fea65f0a9d261d4947b19947956e # tag=v1.9.0
         with:
           repo: pulumi/pulumictl
       - name: Install Pulumi CLI
