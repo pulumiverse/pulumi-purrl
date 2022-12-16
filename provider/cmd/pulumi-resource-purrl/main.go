@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,18 +20,18 @@ import (
 
 	p "github.com/pulumi/pulumi-go-provider"
 
-	pucurl "github.com/dirien/pulumi-pucurl/provider/pkg/provider"
-	"github.com/dirien/pulumi-pucurl/provider/pkg/version"
+	purrl "github.com/dirien/pulumi-purrl/provider/pkg/provider"
+	"github.com/dirien/pulumi-purrl/provider/pkg/version"
 )
 
 func main() {
 	version := strings.TrimPrefix(version.Version, "v")
 
 	// This method defines the provider implemented in this repository.
-	pucurlProvider := pucurl.NewProvider()
+	purrlProvider := purrl.NewProvider()
 
 	// This method starts serving requests using the pucurl provider.
-	err := p.RunProvider("pucurl", version, pucurlProvider)
+	err := p.RunProvider("purrl", version, purrlProvider)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %s", err.Error())
 		os.Exit(1)

@@ -1,10 +1,10 @@
-PROJECT_NAME := Pulumi pucurl Resource Provider
+PROJECT_NAME := Pulumi purrl Resource Provider
 
-PACK             := pucurl
+PACK             := purrl
 PACKDIR          := sdk
-PROJECT          := github.com/dirien/pulumi-pucurl
-NODE_MODULE_NAME := @pulumi/pucurl
-NUGET_PKG_NAME   := Pulumi.pucurl
+PROJECT          := github.com/dirien/pulumi-purrl
+NODE_MODULE_NAME := @pulumi/purrl
+NUGET_PKG_NAME   := Pulumi.purrl
 
 PROVIDER        := pulumi-resource-${PACK}
 CODEGEN         := pulumi-gen-${PACK}
@@ -12,7 +12,7 @@ VERSION         ?= $(shell pulumictl get version)
 PROVIDER_PATH   := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 
-SCHEMA_FILE     := provider/cmd/pulumi-resource-pucurl/schema.json
+SCHEMA_FILE     := provider/cmd/pulumi-resource-purrl/schema.json
 GOPATH			:= $(shell go env GOPATH)
 
 WORKING_DIR     := $(shell pwd)

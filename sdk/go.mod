@@ -1,4 +1,4 @@
-module github.com/dirien/pulumi-pucurl/sdk
+module github.com/dirien/pulumi-purrl/sdk
 
 go 1.19
 

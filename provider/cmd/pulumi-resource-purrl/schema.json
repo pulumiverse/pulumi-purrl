@@ -1,7 +1,7 @@
 {
     "config": {},
     "description": "A Pulumi native provider for making API calls",
-    "displayName": "PuCurl",
+    "displayName": "purrl",
     "homepage": "https://pulumi.com",
     "keywords": [
         "pulumi",
@@ -17,7 +17,7 @@
         },
         "go": {
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/dirien/pulumi-pucurl/sdk/go/pucurl"
+            "importBasePath": "github.com/dirien/pulumi-purrl/sdk/go/purrl"
         },
         "java": {
             "buildFiles": "gradle",
@@ -40,12 +40,12 @@
         }
     },
     "license": "Apache-2.0",
-    "name": "pucurl",
+    "name": "purrl",
     "provider": {},
     "publisher": "Pulumi",
-    "repository": "https://github.com/dirien/pulumi-pucurl",
+    "repository": "https://github.com/dirien/pulumi-purrl",
     "resources": {
-        "pucurl:pucurl:PuCurl": {
+        "purrl:purrl:Purrl": {
             "description": "A Pulumi provider for making API calls",
             "inputProperties": {
                 "body": {

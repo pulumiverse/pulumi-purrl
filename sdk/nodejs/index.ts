@@ -12,15 +12,15 @@ utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
 
 // Export sub-modules:
-import * as pucurl from "./pucurl";
+import * as purrl from "./purrl";
 
 export {
-    pucurl,
+    purrl,
 };
-pulumi.runtime.registerResourcePackage("pucurl", {
+pulumi.runtime.registerResourcePackage("purrl", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
-        if (type !== "pulumi:providers:pucurl") {
+        if (type !== "pulumi:providers:purrl") {
             throw new Error(`unknown provider type ${type}`);
         }
         return new Provider(name, <any>undefined, { urn });

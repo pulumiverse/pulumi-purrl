@@ -1,4 +1,4 @@
-package pucurl
+package purrl
 
 import (
 	"bytes"
@@ -13,7 +13,7 @@ import (
 	"net/http"
 )
 
-type PuCurl struct{}
+type Purrl struct{}
 
 type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
@@ -27,13 +27,13 @@ func init() {
 	Client = &http.Client{}
 }
 
-var _ = (infer.CustomResource[PuCurlInputs, PuCurlOutputs])((*PuCurl)(nil))
-var _ = (infer.CustomUpdate[PuCurlInputs, PuCurlOutputs])((*PuCurl)(nil))
-var _ = (infer.CustomDelete[PuCurlOutputs])((*PuCurl)(nil))
-var _ = (infer.ExplicitDependencies[PuCurlInputs, PuCurlOutputs])((*PuCurl)(nil))
+var _ = (infer.CustomResource[PurrlInputs, PurrlOutputs])((*Purrl)(nil))
+var _ = (infer.CustomUpdate[PurrlInputs, PurrlOutputs])((*Purrl)(nil))
+var _ = (infer.CustomDelete[PurrlOutputs])((*Purrl)(nil))
+var _ = (infer.ExplicitDependencies[PurrlInputs, PurrlOutputs])((*Purrl)(nil))
 
-func (c *PuCurl) Create(ctx p.Context, name string, input PuCurlInputs, preview bool) (string, PuCurlOutputs, error) {
-	state := PuCurlOutputs{PuCurlInputs: input, Response: strPtr("")}
+func (c *Purrl) Create(ctx p.Context, name string, input PurrlInputs, preview bool) (string, PurrlOutputs, error) {
+	state := PurrlOutputs{PurrlInputs: input, Response: strPtr("")}
 	var id string
 	id, err := resource.NewUniqueHex(name, 8, 0)
 	if err != nil {
@@ -115,8 +115,8 @@ func responseCodeChecker(s []string, str string) bool {
 	return false
 }
 
-func (c *PuCurl) Update(ctx p.Context, id string, olds PuCurlOutputs, news PuCurlInputs, preview bool) (PuCurlOutputs, error) {
-	state := PuCurlOutputs{PuCurlInputs: news}
+func (c *Purrl) Update(ctx p.Context, id string, olds PurrlOutputs, news PurrlInputs, preview bool) (PurrlOutputs, error) {
+	state := PurrlOutputs{PurrlInputs: news}
 	// If in preview, don't run the command.
 	if preview {
 		return state, nil
@@ -129,7 +129,7 @@ func (c *PuCurl) Update(ctx p.Context, id string, olds PuCurlOutputs, news PuCur
 	return state, nil
 }
 
-func (c *PuCurl) Delete(ctx p.Context, id string, props PuCurlOutputs) error {
+func (c *Purrl) Delete(ctx p.Context, id string, props PurrlOutputs) error {
 
 	// if delete props are not set, we do nothing
 	if props.DeleteMethod == nil || props.DeleteUrl == nil || props.DeleteResponseCodes == nil {
@@ -144,7 +144,7 @@ func (c *PuCurl) Delete(ctx p.Context, id string, props PuCurlOutputs) error {
 	return nil
 }
 
-func (c *PuCurl) WireDependencies(f infer.FieldSelector, args *PuCurlInputs, state *PuCurlOutputs) {
+func (c *Purrl) WireDependencies(f infer.FieldSelector, args *PurrlInputs, state *PurrlOutputs) {
 	nameInput := f.InputField(&args.Name)
 	urlInput := f.InputField(&args.Url)
 	methodInput := f.InputField(&args.Method)
@@ -171,13 +171,13 @@ func (c *PuCurl) WireDependencies(f infer.FieldSelector, args *PuCurlInputs, sta
 	f.OutputField(&state.DeleteResponseCodes).DependsOn(deleteResponseCodeInput)
 }
 
-var _ = (infer.Annotated)((*PuCurl)(nil))
+var _ = (infer.Annotated)((*Purrl)(nil))
 
-func (c *PuCurl) Annotate(a infer.Annotator) {
+func (c *Purrl) Annotate(a infer.Annotator) {
 	a.Describe(&c, "A Pulumi provider for making API calls")
 }
 
-type PuCurlInputs struct {
+type PurrlInputs struct {
 	// The field tags are used to provide metadata on the schema representation.
 	// pulumi:"optional" specifies that a field is optional. This must be a pointer.
 	// provider:"replaceOnChanges" specifies that the resource will be replaced if the field changes.
@@ -195,7 +195,7 @@ type PuCurlInputs struct {
 	DeleteResponseCodes *[]string          `pulumi:"deleteResponseCodes,optional"`
 }
 
-func (c *PuCurlInputs) Annotate(a infer.Annotator) {
+func (c *PurrlInputs) Annotate(a infer.Annotator) {
 	a.Describe(&c.Name, "The name for this API call.")
 	a.Describe(&c.Url, "The API endpoint to call.")
 	a.Describe(&c.Method, "The HTTP method to use.")
@@ -209,14 +209,14 @@ func (c *PuCurlInputs) Annotate(a infer.Annotator) {
 	a.Describe(&c.DeleteResponseCodes, "The expected response code.")
 }
 
-type PuCurlOutputs struct {
-	PuCurlInputs
+type PurrlOutputs struct {
+	PurrlInputs
 	Response       *string `pulumi:"response"`
 	DeleteResponse *string `pulumi:"deleteResponse,optional"`
 }
 
-func (c *PuCurlOutputs) Annotate(a infer.Annotator) {
-	c.PuCurlInputs.Annotate(a)
+func (c *PurrlOutputs) Annotate(a infer.Annotator) {
+	c.PurrlInputs.Annotate(a)
 	a.Describe(&c.Response, "The response from the API call.")
 	a.Describe(&c.DeleteResponse, "The response from the API call.")
 }

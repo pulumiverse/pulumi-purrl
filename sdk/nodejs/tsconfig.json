@@ -15,8 +15,8 @@
     "files": [
         "index.ts",
         "provider.ts",
-        "pucurl/index.ts",
-        "pucurl/puCurl.ts",
+        "purrl/index.ts",
+        "purrl/purrl.ts",
         "utilities.ts"
     ]
 }

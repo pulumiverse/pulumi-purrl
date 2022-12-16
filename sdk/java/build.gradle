@@ -65,7 +65,7 @@ def genPulumiResources = tasks.register('genPulumiResources') {
         new File(outDir, "version.txt").text = resolvedVersion
         def info = new Object()
         info.metaClass.resource = true
-        info.metaClass.name = "pucurl"
+        info.metaClass.name = "purrl"
         info.metaClass.version = resolvedVersion
         def infoJson = new groovy.json.JsonBuilder(info).toPrettyString()
         new File(outDir, "plugin.json").text = infoJson
@@ -80,7 +80,7 @@ publishing {
     publications {
         mainPublication(MavenPublication) {
             groupId = "com.pulumi"
-            artifactId = "pucurl"
+            artifactId = "purrl"
             version = resolvedVersion
             from components.java
             artifact sourcesJar
@@ -88,16 +88,16 @@ publishing {
 
             pom {
                 inceptionYear = "2022"
-                name = "pulumi-pucurl"
+                name = "pulumi-purrl"
                 packaging = "jar"
                 description = "A Pulumi native provider for making API calls"
 
-                url = "https://github.com/dirien/pulumi-pucurl"
+                url = "https://github.com/dirien/pulumi-purrl"
 
                 scm {
-                    connection = "git@github.com/dirien/pulumi-pucurl.git"
-                    developerConnection = "git@github.com/dirien/pulumi-pucurl.git"
-                    url = "https://github.com/dirien/pulumi-pucurl"
+                    connection = "git@github.com/dirien/pulumi-purrl.git"
+                    developerConnection = "git@github.com/dirien/pulumi-purrl.git"
+                    url = "https://github.com/dirien/pulumi-purrl"
                 }
 
                 licenses {

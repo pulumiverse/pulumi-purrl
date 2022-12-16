@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"os"
 
-	pucurl "github.com/dirien/pulumi-pucurl/provider/pkg/provider"
-	providerVersion "github.com/dirien/pulumi-pucurl/provider/pkg/version"
+	pucurl "github.com/dirien/pulumi-purrl/provider/pkg/provider"
+	providerVersion "github.com/dirien/pulumi-purrl/provider/pkg/version"
 )
 
 // copied from encoding/json for use with JSONMarshal above

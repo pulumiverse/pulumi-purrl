@@ -7,9 +7,9 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Pucurl
+namespace Pulumi.Purrl
 {
-    [PucurlResourceType("pulumi:providers:pucurl")]
+    [PurrlResourceType("pulumi:providers:purrl")]
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
@@ -20,7 +20,7 @@ namespace Pulumi.Pucurl
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
-            : base("pucurl", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
+            : base("purrl", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
 

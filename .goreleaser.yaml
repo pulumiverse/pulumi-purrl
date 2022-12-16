@@ -6,7 +6,7 @@ before:
   hooks:
     - make codegen
 builds:
-  - binary: pulumi-resource-pucurl
+  - binary: pulumi-resource-purrl
     dir: provider
     env:
       - CGO_ENABLED=0
@@ -20,7 +20,7 @@ builds:
     ldflags:
       # The line below MUST align with the module in current provider/go.mod
       - -X github.com/pulumiverse/pulumi-aquasec/provider/pkg/version.Version={{.Tag }}
-    main: ./cmd/pulumi-resource-pucurl/
+    main: ./cmd/pulumi-resource-purrl/
 
 release:
   disable: false

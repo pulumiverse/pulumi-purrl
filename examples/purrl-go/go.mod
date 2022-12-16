@@ -1,13 +1,13 @@
 module pucurl-go
 
-go 1.17
+go 1.19
 
 require (
-	github.com/dirien/pulumi-pucurl/sdk v0.1.0
-	github.com/pulumi/pulumi/sdk/v3 v3.47.0
+	github.com/dirien/pulumi-purrl/sdk v0.1.0
+	github.com/pulumi/pulumi/sdk/v3 v3.49.0
 )
 
-replace github.com/dirien/pulumi-pucurl/sdk => ../../sdk
+replace github.com/dirien/pulumi-purrl/sdk => ../../sdk
 
 require (
 	github.com/Microsoft/go-winio v0.5.2 // indirect
@@ -62,7 +62,7 @@ require (
 	google.golang.org/protobuf v1.24.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 	sourcegraph.com/sourcegraph/appdash v0.0.0-20190731080439-ebfcffb1b5c0 // indirect
 )

@@ -25,7 +25,7 @@ TODO
 package main
 
 import (
-	"github.com/dirien/pulumi-pucurl/sdk/go/pucurl/pucurl"
+	"github.com/dirien/pulumi-purrl/sdk/go/pucurl/pucurl"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/dirien/pulumi-pucurl/sdk/go/pucurl/pucurl"
+	"github.com/dirien/pulumi-purrl/sdk/go/purrl/purrl"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
-		puCurl, err := pucurl.NewPuCurl(ctx, "pucurl", &pucurl.PuCurlArgs{
+		purrl, err := purrl.NewPurrl(ctx, "purrl", &purrl.PurrlArgs{
 			Url:  pulumi.String("https://httpbin.org/get"),
 			Name: pulumi.String("httpbin"),
 			ResponseCodes: pulumi.StringArray{
@@ -26,7 +26,7 @@ func main() {
 		if err != nil {
 			return err
 		}
-		ctx.Export("puCurl", puCurl.Response)
+		ctx.Export("purrl", purrl.Response)
 		return nil
 	})
 }
