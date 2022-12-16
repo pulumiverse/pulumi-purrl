@@ -1,4 +1,4 @@
-module github.com/dirien/pulumi-pucurl/provider
+module github.com/dirien/pulumi-purrl/provider
 
 go 1.19
 

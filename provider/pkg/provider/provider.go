@@ -1,15 +1,14 @@
 package provider
 
 import (
-	"github.com/dirien/pulumi-pucurl/provider/pkg/provider/pucurl"
 	"strings"
 
 	"github.com/blang/semver"
+	purrl "github.com/dirien/pulumi-purrl/provider/pkg/provider/purrl"
 	p "github.com/pulumi/pulumi-go-provider"
 	"github.com/pulumi/pulumi-go-provider/infer"
-	"github.com/pulumi/pulumi-go-provider/middleware/schema"
-
 	"github.com/pulumi/pulumi-go-provider/integration"
+	"github.com/pulumi/pulumi-go-provider/middleware/schema"
 )
 
 // NewProvider This provider uses the `pulumi-go-provider` library to produce a code-first provider definition.
@@ -17,7 +16,7 @@ func NewProvider() p.Provider {
 	return infer.Provider(infer.Options{
 		// This is the metadata for the provider
 		Metadata: schema.Metadata{
-			DisplayName: "PuCurl",
+			DisplayName: "purrl",
 			Description: "A Pulumi native provider for making API calls",
 			Keywords: []string{
 				"pulumi",
@@ -27,7 +26,7 @@ func NewProvider() p.Provider {
 			},
 			Homepage:   "https://pulumi.com",
 			License:    "Apache-2.0",
-			Repository: "https://github.com/dirien/pulumi-pucurl",
+			Repository: "https://github.com/dirien/pulumi-purrl",
 			Publisher:  "Pulumi",
 			LogoURL:    "",
 			// This contains language specific details for generating the provider's SDKs
@@ -39,7 +38,7 @@ func NewProvider() p.Provider {
 				},
 				"go": map[string]any{
 					"generateResourceContainerTypes": true,
-					"importBasePath":                 "github.com/dirien/pulumi-pucurl/sdk/go/pucurl",
+					"importBasePath":                 "github.com/dirien/pulumi-purrl/sdk/go/purrl",
 				},
 				"nodejs": map[string]any{
 					"dependencies": map[string]string{
@@ -69,11 +68,11 @@ func NewProvider() p.Provider {
 				// 1. This type is an interface that implements the logic for the Resource
 				//    these methods include `Create`, `Update`, `Delete`, and `WireDependencies`.
 				//    `WireDependencies` should be implemented to preserve the secretness of an input
-				*pucurl.PuCurl,
+				*purrl.Purrl,
 				// 2. The type of the Inputs/Arguments to supply to the Resource.
-				pucurl.PuCurlInputs,
+				purrl.PurrlInputs,
 				// 3. The type of the Output/Properties/Fields of a created Resource.
-				pucurl.PuCurlOutputs,
+				purrl.PurrlOutputs,
 			](),
 		},
 	})
@@ -81,7 +80,7 @@ func NewProvider() p.Provider {
 
 func Schema(version string) (string, error) {
 	version = strings.TrimPrefix(version, "v")
-	s, err := integration.NewServer("pucurl", semver.MustParse(version), NewProvider()).
+	s, err := integration.NewServer("purrl", semver.MustParse(version), NewProvider()).
 		GetSchema(p.GetSchemaRequest{})
 	return s.Schema, err
 }

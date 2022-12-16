@@ -15,15 +15,15 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'pucurl', PLUGIN_VERSION])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'purrl', PLUGIN_VERSION])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
-                There was an error installing the pucurl resource provider plugin.
+                There was an error installing the purrl resource provider plugin.
                 It looks like `pulumi` is not installed on your system.
                 Please visit https://pulumi.com/ to install the Pulumi CLI.
                 You may try manually installing the plugin by running
-                `pulumi plugin install resource pucurl {PLUGIN_VERSION}`
+                `pulumi plugin install resource purrl {PLUGIN_VERSION}`
                 """)
             else:
                 raise
@@ -34,10 +34,10 @@ def readme():
         with open('README.md', encoding='utf-8') as f:
             return f.read()
     except FileNotFoundError:
-        return "pucurl Pulumi Package - Development Version"
+        return "purrl Pulumi Package - Development Version"
 
 
-setup(name='pulumi_pucurl',
+setup(name='pulumi_purrl',
       version=VERSION,
       description="A Pulumi native provider for making API calls",
       long_description=readme(),
@@ -48,12 +48,12 @@ setup(name='pulumi_pucurl',
       keywords='pulumi command category/utility kind/native',
       url='https://pulumi.com',
       project_urls={
-          'Repository': 'https://github.com/dirien/pulumi-pucurl'
+          'Repository': 'https://github.com/dirien/pulumi-purrl'
       },
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi_pucurl': [
+          'pulumi_purrl': [
               'py.typed',
               'pulumi-plugin.json',
           ]
