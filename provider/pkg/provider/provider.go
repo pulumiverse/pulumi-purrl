@@ -24,17 +24,19 @@ func NewProvider() p.Provider {
 				"category/utility",
 				"kind/native",
 			},
-			Homepage:   "https://pulumi.com",
-			License:    "Apache-2.0",
-			Repository: "https://github.com/pulumiverse/pulumi-purrl",
-			Publisher:  "Pulumi",
-			LogoURL:    "",
+			Homepage:          "https://pulumi.com",
+			License:           "Apache-2.0",
+			Repository:        "https://github.com/pulumiverse/pulumi-purrl",
+			PluginDownloadURL: "github://api.github.com/pulumiverse/pulumi-purrl",
+			Publisher:         "Pulumiverse",
+			LogoURL:           "",
 			// This contains language specific details for generating the provider's SDKs
 			LanguageMap: map[string]any{
 				"csharp": map[string]any{
 					"packageReferences": map[string]string{
 						"Pulumi": "3.*",
 					},
+					"rootNamespace": "Pulumiverse",
 				},
 				"go": map[string]any{
 					"generateResourceContainerTypes": true,
@@ -44,11 +46,13 @@ func NewProvider() p.Provider {
 					"dependencies": map[string]string{
 						"@pulumi/pulumi": "^3.0.0",
 					},
+					"packageName": "@pulumiverse/pulumi-purrl",
 				},
 				"python": map[string]any{
 					"requires": map[string]string{
 						"pulumi": ">=3.0.0,<4.0.0",
 					},
+					"packageName": "Pulumiverse.pulumi_purrl",
 				},
 				"java": map[string]any{
 					"buildFiles":                      "gradle",
@@ -58,6 +62,7 @@ func NewProvider() p.Provider {
 						"com.google.code.gson:gson":       "2.8.9",
 						"com.google.code.findbugs:jsr305": "3.0.2",
 					},
+					"basePackage": "com.pulumiverse",
 				},
 			},
 		},

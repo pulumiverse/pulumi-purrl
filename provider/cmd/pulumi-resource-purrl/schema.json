@@ -13,13 +13,15 @@
         "csharp": {
             "packageReferences": {
                 "Pulumi": "3.*"
-            }
+            },
+            "rootNamespace": "Pulumiverse"
         },
         "go": {
             "generateResourceContainerTypes": true,
             "importBasePath": "github.com/pulumiverse/pulumi-purrl/sdk/go/purrl"
         },
         "java": {
+            "basePackage": "com.pulumiverse",
             "buildFiles": "gradle",
             "dependencies": {
                 "com.google.code.findbugs:jsr305": "3.0.2",
@@ -31,9 +33,11 @@
         "nodejs": {
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
-            }
+            },
+            "packageName": "@pulumiverse/pulumi-purrl"
         },
         "python": {
+            "packageName": "Pulumiverse.pulumi_purrl",
             "requires": {
                 "pulumi": ">=3.0.0,<4.0.0"
             }
@@ -41,8 +45,9 @@
     },
     "license": "Apache-2.0",
     "name": "purrl",
+    "pluginDownloadURL": "github://api.github.com/pulumiverse/pulumi-purrl",
     "provider": {},
-    "publisher": "Pulumi",
+    "publisher": "Pulumiverse",
     "repository": "https://github.com/pulumiverse/pulumi-purrl",
     "resources": {
         "purrl:purrl:Purrl": {
