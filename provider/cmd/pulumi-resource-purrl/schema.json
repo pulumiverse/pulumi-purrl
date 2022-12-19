@@ -37,7 +37,7 @@
             "packageName": "@pulumiverse/pulumi-purrl"
         },
         "python": {
-            "packageName": "Pulumiverse.pulumi_purrl",
+            "packageName": "pulumiverse_pulumi_purrl",
             "requires": {
                 "pulumi": ">=3.0.0,<4.0.0"
             }

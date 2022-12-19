@@ -37,7 +37,7 @@ def readme():
         return "purrl Pulumi Package - Development Version"
 
 
-setup(name='Pulumiverse.pulumi_purrl',
+setup(name='pulumiverse_pulumi_purrl',
       version=VERSION,
       description="A Pulumi native provider for making API calls",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='Pulumiverse.pulumi_purrl',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'Pulumiverse.pulumi_purrl': [
+          'pulumiverse_pulumi_purrl': [
               'py.typed',
               'pulumi-plugin.json',
           ]
