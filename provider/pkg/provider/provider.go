@@ -52,7 +52,7 @@ func NewProvider() p.Provider {
 					"requires": map[string]string{
 						"pulumi": ">=3.0.0,<4.0.0",
 					},
-					"packageName": "Pulumiverse.pulumi_purrl",
+					"packageName": "pulumiverse_pulumi_purrl",
 				},
 				"java": map[string]any{
 					"buildFiles":                      "gradle",
