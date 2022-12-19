@@ -17,7 +17,7 @@
         },
         "go": {
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/dirien/pulumi-purrl/sdk/go/purrl"
+            "importBasePath": "github.com/pulumiverse/pulumi-purrl/sdk/go/purrl"
         },
         "java": {
             "buildFiles": "gradle",
@@ -43,7 +43,7 @@
     "name": "purrl",
     "provider": {},
     "publisher": "Pulumi",
-    "repository": "https://github.com/dirien/pulumi-purrl",
+    "repository": "https://github.com/pulumiverse/pulumi-purrl",
     "resources": {
         "purrl:purrl:Purrl": {
             "description": "A Pulumi provider for making API calls",

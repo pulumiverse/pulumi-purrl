@@ -3,11 +3,11 @@ module pucurl-go
 go 1.19
 
 require (
-	github.com/dirien/pulumi-purrl/sdk v0.1.0
+	github.com/pulumiverse/pulumi-purrl/sdk v0.1.0
 	github.com/pulumi/pulumi/sdk/v3 v3.49.0
 )
 
-replace github.com/dirien/pulumi-purrl/sdk => ../../sdk
+replace github.com/pulumiverse/pulumi-purrl/sdk => ../../sdk
 
 require (
 	github.com/Microsoft/go-winio v0.5.2 // indirect

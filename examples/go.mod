@@ -1,3 +1,3 @@
-module github.com/dirien/pulumi-purrl/examples
+module github.com/pulumiverse/pulumi-purrl/examples
 
 go 1.19

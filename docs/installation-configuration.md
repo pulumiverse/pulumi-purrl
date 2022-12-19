@@ -18,5 +18,5 @@ The Pulumi PuCurl provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumiverse/pucurl`](https://www.npmjs.com/package/@pulumiverse/pucurl)
 * Python: [`pulumiverse_pucurl`](https://pypi.org/project/pulumiverse-aquasec/)
-* Go: [`github.com/dirien/pulumi-purrl/sdk/go/pucurl`](https://pkg.go.dev/github.com/dirien/pulumi-purrl/sdk)
+* Go: [`github.com/pulumiverse/pulumi-purrl/sdk/go/pucurl`](https://pkg.go.dev/github.com/pulumiverse/pulumi-purrl/sdk)
 * .NET: [`Pulumiverse.Aquasec`](https://www.nuget.org/packages/Pulumiverse.Pucurl)

@@ -4,11 +4,11 @@ import (
 	"strings"
 
 	"github.com/blang/semver"
-	purrl "github.com/dirien/pulumi-purrl/provider/pkg/provider/purrl"
 	p "github.com/pulumi/pulumi-go-provider"
 	"github.com/pulumi/pulumi-go-provider/infer"
 	"github.com/pulumi/pulumi-go-provider/integration"
 	"github.com/pulumi/pulumi-go-provider/middleware/schema"
+	"github.com/pulumiverse/pulumi-purrl/provider/pkg/provider/purrl"
 )
 
 // NewProvider This provider uses the `pulumi-go-provider` library to produce a code-first provider definition.
@@ -26,7 +26,7 @@ func NewProvider() p.Provider {
 			},
 			Homepage:   "https://pulumi.com",
 			License:    "Apache-2.0",
-			Repository: "https://github.com/dirien/pulumi-purrl",
+			Repository: "https://github.com/pulumiverse/pulumi-purrl",
 			Publisher:  "Pulumi",
 			LogoURL:    "",
 			// This contains language specific details for generating the provider's SDKs
@@ -38,7 +38,7 @@ func NewProvider() p.Provider {
 				},
 				"go": map[string]any{
 					"generateResourceContainerTypes": true,
-					"importBasePath":                 "github.com/dirien/pulumi-purrl/sdk/go/purrl",
+					"importBasePath":                 "github.com/pulumiverse/pulumi-purrl/sdk/go/purrl",
 				},
 				"nodejs": map[string]any{
 					"dependencies": map[string]string{

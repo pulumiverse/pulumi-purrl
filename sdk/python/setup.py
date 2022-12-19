@@ -48,7 +48,7 @@ setup(name='pulumi_purrl',
       keywords='pulumi command category/utility kind/native',
       url='https://pulumi.com',
       project_urls={
-          'Repository': 'https://github.com/dirien/pulumi-purrl'
+          'Repository': 'https://github.com/pulumiverse/pulumi-purrl'
       },
       license='Apache-2.0',
       packages=find_packages(),
