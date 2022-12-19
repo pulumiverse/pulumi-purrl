@@ -34,10 +34,10 @@
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
-            "packageName": "@pulumiverse/pulumi-purrl"
+            "packageName": "@pulumiverse/purrl"
         },
         "python": {
-            "packageName": "pulumiverse_pulumi_purrl",
+            "packageName": "pulumiverse_purrl",
             "requires": {
                 "pulumi": ">=3.0.0,<4.0.0"
             }
@@ -45,7 +45,7 @@
     },
     "license": "Apache-2.0",
     "name": "purrl",
-    "pluginDownloadURL": "github://api.github.com/pulumiverse/pulumi-purrl",
+    "pluginDownloadURL": "github://api.github.com/pulumiverse",
     "provider": {},
     "publisher": "Pulumiverse",
     "repository": "https://github.com/pulumiverse/pulumi-purrl",

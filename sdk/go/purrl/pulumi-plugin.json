@@ -1,5 +1,5 @@
 {
   "resource": true,
   "name": "purrl",
-  "server": "github://api.github.com/pulumiverse/pulumi-purrl"
+  "server": "github://api.github.com/pulumiverse"
 }

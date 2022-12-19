@@ -1,5 +1,5 @@
 {
-    "name": "@pulumiverse/pulumi-purrl",
+    "name": "@pulumiverse/purrl",
     "version": "${VERSION}",
     "keywords": [
         "pulumi",
@@ -24,6 +24,6 @@
     "pulumi": {
         "resource": true,
         "name": "purrl",
-        "server": "github://api.github.com/pulumiverse/pulumi-purrl"
+        "server": "github://api.github.com/pulumiverse"
     }
 }

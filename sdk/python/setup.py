@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'purrl', PLUGIN_VERSION, '--server', 'github://api.github.com/pulumiverse/pulumi-purrl'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'purrl', PLUGIN_VERSION, '--server', 'github://api.github.com/pulumiverse'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -37,7 +37,7 @@ def readme():
         return "purrl Pulumi Package - Development Version"
 
 
-setup(name='pulumiverse_pulumi_purrl',
+setup(name='pulumiverse_purrl',
       version=VERSION,
       description="A Pulumi native provider for making API calls",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='pulumiverse_pulumi_purrl',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumiverse_pulumi_purrl': [
+          'pulumiverse_purrl': [
               'py.typed',
               'pulumi-plugin.json',
           ]

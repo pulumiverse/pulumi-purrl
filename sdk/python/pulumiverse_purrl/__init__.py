@@ -9,10 +9,10 @@ from .provider import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import pulumiverse_pulumi_purrl.purrl as __purrl
+    import pulumiverse_purrl.purrl as __purrl
     purrl = __purrl
 else:
-    purrl = _utilities.lazy_import('pulumiverse_pulumi_purrl.purrl')
+    purrl = _utilities.lazy_import('pulumiverse_purrl.purrl')
 
 _utilities.register(
     resource_modules="""
@@ -20,7 +20,7 @@ _utilities.register(
  {
   "pkg": "purrl",
   "mod": "purrl",
-  "fqn": "pulumiverse_pulumi_purrl.purrl",
+  "fqn": "pulumiverse_purrl.purrl",
   "classes": {
    "purrl:purrl:Purrl": "Purrl"
   }
@@ -32,7 +32,7 @@ _utilities.register(
  {
   "pkg": "purrl",
   "token": "pulumi:providers:purrl",
-  "fqn": "pulumiverse_pulumi_purrl",
+  "fqn": "pulumiverse_purrl",
   "class": "Provider"
  }
 ]

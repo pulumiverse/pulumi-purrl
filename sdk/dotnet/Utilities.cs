@@ -53,7 +53,7 @@ namespace Pulumiverse.Purrl
         {
             var dst = src ?? new global::Pulumi.InvokeOptions{};
             dst.Version = src?.Version ?? Version;
-            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/pulumiverse/pulumi-purrl";
+            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/pulumiverse";
             return dst;
         }
 

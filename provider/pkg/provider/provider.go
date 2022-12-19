@@ -27,7 +27,7 @@ func NewProvider() p.Provider {
 			Homepage:          "https://pulumi.com",
 			License:           "Apache-2.0",
 			Repository:        "https://github.com/pulumiverse/pulumi-purrl",
-			PluginDownloadURL: "github://api.github.com/pulumiverse/pulumi-purrl",
+			PluginDownloadURL: "github://api.github.com/pulumiverse",
 			Publisher:         "Pulumiverse",
 			LogoURL:           "",
 			// This contains language specific details for generating the provider's SDKs
@@ -46,13 +46,13 @@ func NewProvider() p.Provider {
 					"dependencies": map[string]string{
 						"@pulumi/pulumi": "^3.0.0",
 					},
-					"packageName": "@pulumiverse/pulumi-purrl",
+					"packageName": "@pulumiverse/purrl",
 				},
 				"python": map[string]any{
 					"requires": map[string]string{
 						"pulumi": ">=3.0.0,<4.0.0",
 					},
-					"packageName": "pulumiverse_pulumi_purrl",
+					"packageName": "pulumiverse_purrl",
 				},
 				"java": map[string]any{
 					"buildFiles":                      "gradle",
