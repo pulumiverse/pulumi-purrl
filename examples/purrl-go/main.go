@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-purrl/sdk/go/purrl/purrl"
+	"github.com/pulumiverse/pulumi-purrl/sdk/go/purrl"
 )
 
 func main() {

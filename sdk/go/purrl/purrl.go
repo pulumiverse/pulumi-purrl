@@ -64,7 +64,7 @@ func NewPurrl(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Purrl
-	err := ctx.RegisterResource("purrl:purrl:Purrl", name, args, &resource, opts...)
+	err := ctx.RegisterResource("purrl:index:Purrl", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ func NewPurrl(ctx *pulumi.Context,
 func GetPurrl(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *PurrlState, opts ...pulumi.ResourceOption) (*Purrl, error) {
 	var resource Purrl
-	err := ctx.ReadResource("purrl:purrl:Purrl", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("purrl:index:Purrl", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

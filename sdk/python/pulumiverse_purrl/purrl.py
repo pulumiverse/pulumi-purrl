@@ -7,7 +7,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities
+from . import _utilities
 
 __all__ = ['PurrlArgs', 'Purrl']
 
@@ -291,7 +291,7 @@ class Purrl(pulumi.CustomResource):
             __props__.__dict__["delete_response"] = None
             __props__.__dict__["response"] = None
         super(Purrl, __self__).__init__(
-            'purrl:purrl:Purrl',
+            'purrl:index:Purrl',
             resource_name,
             __props__,
             opts)

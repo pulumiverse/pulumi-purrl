@@ -1,6 +1,8 @@
 package provider
 
 import (
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumiverse/pulumi-purrl/provider/pkg/provider/purrl"
 	"strings"
 
 	"github.com/blang/semver"
@@ -8,7 +10,6 @@ import (
 	"github.com/pulumi/pulumi-go-provider/infer"
 	"github.com/pulumi/pulumi-go-provider/integration"
 	"github.com/pulumi/pulumi-go-provider/middleware/schema"
-	"github.com/pulumiverse/pulumi-purrl/provider/pkg/provider/purrl"
 )
 
 // NewProvider This provider uses the `pulumi-go-provider` library to produce a code-first provider definition.
@@ -79,6 +80,9 @@ func NewProvider() p.Provider {
 				// 3. The type of the Output/Properties/Fields of a created Resource.
 				purrl.PurrlOutputs,
 			](),
+		},
+		ModuleMap: map[tokens.ModuleName]tokens.ModuleName{
+			"purrl": "index",
 		},
 	})
 }

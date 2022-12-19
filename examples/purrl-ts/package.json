@@ -1,0 +1,11 @@
+{
+    "name": "purrl-ts",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^18"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^3.49.0",
+        "@pulumiverse/purrl": "^0.2.2"
+    }
+}

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Purrl.Purrl
+namespace Pulumiverse.Purrl
 {
     /// <summary>
     /// A Pulumi provider for making API calls
     /// </summary>
-    [PurrlResourceType("purrl:purrl:Purrl")]
+    [PurrlResourceType("purrl:index:Purrl")]
     public partial class Purrl : global::Pulumi.CustomResource
     {
         /// <summary>
@@ -103,12 +103,12 @@ namespace Pulumiverse.Purrl.Purrl
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Purrl(string name, PurrlArgs args, CustomResourceOptions? options = null)
-            : base("purrl:purrl:Purrl", name, args ?? new PurrlArgs(), MakeResourceOptions(options, ""))
+            : base("purrl:index:Purrl", name, args ?? new PurrlArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Purrl(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("purrl:purrl:Purrl", name, null, MakeResourceOptions(options, id))
+            : base("purrl:index:Purrl", name, null, MakeResourceOptions(options, id))
         {
         }
 

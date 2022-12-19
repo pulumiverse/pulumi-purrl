@@ -10,13 +10,24 @@ export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
+export { PurrlArgs } from "./purrl";
+export type Purrl = import("./purrl").Purrl;
+export const Purrl: typeof import("./purrl").Purrl = null as any;
+utilities.lazyLoad(exports, ["Purrl"], () => require("./purrl"));
 
-// Export sub-modules:
-import * as purrl from "./purrl";
 
-export {
-    purrl,
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "purrl:index:Purrl":
+                return new Purrl(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
 };
+pulumi.runtime.registerResourceModule("purrl", "index", _module)
 pulumi.runtime.registerResourcePackage("purrl", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
