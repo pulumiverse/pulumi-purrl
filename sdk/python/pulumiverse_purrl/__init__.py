@@ -6,23 +6,16 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .provider import *
-
-# Make subpackages available:
-if typing.TYPE_CHECKING:
-    import pulumiverse_purrl.purrl as __purrl
-    purrl = __purrl
-else:
-    purrl = _utilities.lazy_import('pulumiverse_purrl.purrl')
-
+from .purrl import *
 _utilities.register(
     resource_modules="""
 [
  {
   "pkg": "purrl",
-  "mod": "purrl",
-  "fqn": "pulumiverse_purrl.purrl",
+  "mod": "index",
+  "fqn": "pulumiverse_purrl",
   "classes": {
-   "purrl:purrl:Purrl": "Purrl"
+   "purrl:index:Purrl": "Purrl"
   }
  }
 ]

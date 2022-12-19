@@ -50,7 +50,7 @@
     "publisher": "Pulumiverse",
     "repository": "https://github.com/pulumiverse/pulumi-purrl",
     "resources": {
-        "purrl:purrl:Purrl": {
+        "purrl:index:Purrl": {
             "description": "A Pulumi provider for making API calls",
             "inputProperties": {
                 "body": {

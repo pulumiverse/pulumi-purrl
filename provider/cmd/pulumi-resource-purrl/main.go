@@ -15,12 +15,12 @@ package main
 
 import (
 	"fmt"
+	"github.com/pulumiverse/pulumi-purrl/provider/pkg/provider"
 	"os"
 	"strings"
 
 	p "github.com/pulumi/pulumi-go-provider"
 
-	purrl "github.com/pulumiverse/pulumi-purrl/provider/pkg/provider"
 	"github.com/pulumiverse/pulumi-purrl/provider/pkg/version"
 )
 
@@ -28,7 +28,7 @@ func main() {
 	version := strings.TrimPrefix(version.Version, "v")
 
 	// This method defines the provider implemented in this repository.
-	purrlProvider := purrl.NewProvider()
+	purrlProvider := provider.NewProvider()
 
 	// This method starts serving requests using the pucurl provider.
 	err := p.RunProvider("purrl", version, purrlProvider)

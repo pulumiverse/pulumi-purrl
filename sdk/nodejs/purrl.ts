@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "../utilities";
+import * as utilities from "./utilities";
 
 /**
  * A Pulumi provider for making API calls
@@ -21,7 +21,7 @@ export class Purrl extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'purrl:purrl:Purrl';
+    public static readonly __pulumiType = 'purrl:index:Purrl';
 
     /**
      * Returns true if the given object is an instance of Purrl.  This is designed to work even

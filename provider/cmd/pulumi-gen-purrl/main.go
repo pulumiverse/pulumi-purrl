@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	pucurl "github.com/pulumiverse/pulumi-purrl/provider/pkg/provider"
 	"os"
 
-	pucurl "github.com/pulumiverse/pulumi-purrl/provider/pkg/provider"
 	providerVersion "github.com/pulumiverse/pulumi-purrl/provider/pkg/version"
 )
 
