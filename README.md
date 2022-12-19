@@ -1,16 +1,9 @@
 # Purrl
 
-![](img/purrl.png)
+![purrl_logo](img/purrl.png)
 
 This provider is designed to be a flexible extension of your Pulumi code to make API calls to your target endpoint. Purrl is useful when a provider does not have a resource or data source that you require, so Purrl can be used to make substitute API calls.
 
-## Provider Binary
-
-The Purrl provider binary is a third party binary. It can be installed using the pulumi plugin command.
-
-```bash
-pulumi plugin install resource purrl <version> --server github://api.github.com/dirien
-```
 
 Replace the version string with your desired version.
 
@@ -23,13 +16,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-TODO
+npm install @pulumiverse/purrl
 ```
 
 or `yarn`:
 
 ```bash
-TODO
+yarn add @pulumiverse/purrl
 ```
 
 ### Python
@@ -37,7 +30,7 @@ TODO
 To use from Python, install using `pip`:
 
 ```bash
-TODO
+pip install pulumiverse-purrl
 ```
 
 ### Go
@@ -53,5 +46,5 @@ go get github.com/pulumiverse/pulumi-purrl/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-TODO
+dotnet add package Pulumiverse.Purrl
 ```
