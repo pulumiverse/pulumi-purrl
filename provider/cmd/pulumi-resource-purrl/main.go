@@ -20,8 +20,8 @@ import (
 
 	p "github.com/pulumi/pulumi-go-provider"
 
-	purrl "github.com/dirien/pulumi-purrl/provider/pkg/provider"
-	"github.com/dirien/pulumi-purrl/provider/pkg/version"
+	purrl "github.com/pulumiverse/pulumi-purrl/provider/pkg/provider"
+	"github.com/pulumiverse/pulumi-purrl/provider/pkg/version"
 )
 
 func main() {

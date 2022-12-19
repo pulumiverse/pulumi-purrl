@@ -2,7 +2,7 @@ PROJECT_NAME := Pulumi purrl Resource Provider
 
 PACK             := purrl
 PACKDIR          := sdk
-PROJECT          := github.com/dirien/pulumi-purrl
+PROJECT          := github.com/pulumiverse/pulumi-purrl
 NODE_MODULE_NAME := @pulumi/purrl
 NUGET_PKG_NAME   := Pulumi.purrl
 

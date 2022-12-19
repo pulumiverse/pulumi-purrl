@@ -92,12 +92,12 @@ publishing {
                 packaging = "jar"
                 description = "A Pulumi native provider for making API calls"
 
-                url = "https://github.com/dirien/pulumi-purrl"
+                url = "https://github.com/pulumiverse/pulumi-purrl"
 
                 scm {
-                    connection = "git@github.com/dirien/pulumi-purrl.git"
-                    developerConnection = "git@github.com/dirien/pulumi-purrl.git"
-                    url = "https://github.com/dirien/pulumi-purrl"
+                    connection = "git@github.com/pulumiverse/pulumi-purrl.git"
+                    developerConnection = "git@github.com/pulumiverse/pulumi-purrl.git"
+                    url = "https://github.com/pulumiverse/pulumi-purrl"
                 }
 
                 licenses {

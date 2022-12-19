@@ -45,7 +45,7 @@ TODO
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/dirien/pulumi-purrl/sdk/go/...
+go get github.com/pulumiverse/pulumi-purrl/sdk/go/...
 ```
 
 ### .NET
