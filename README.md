@@ -1,5 +1,7 @@
 # Purrl
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/pulumiverse/pulumi-purrl/sdk.svg)](https://pkg.go.dev/github.com/pulumiverse/pulumi-purrl/sdk)
+
 ![purrl_logo](img/purrl.png)
 
 This provider is designed to be a flexible extension of your Pulumi code to make API calls to your target endpoint. Purrl is useful when a provider does not have a resource or data source that you require, so Purrl can be used to make substitute API calls.

@@ -1,10 +1,10 @@
 ---
-title: PuCurl
-meta_desc: Provides an overview of the PuCurl Provider for Pulumi.
+title: Purrl
+meta_desc: Provides an overview of the Purrl Provider for Pulumi.
 layout: overview
 ---
 
-This provider is designed to be a flexible extension of your Pulumi code to make API calls to your target endpoint. PuCurl is useful when a provider does not have a resource or data source that you require, so PuCurl can be used to make substitute API calls.
+This provider is designed to be a flexible extension of your Pulumi code to make API calls to your target endpoint. `Purrl` is useful when a provider does not have a resource or data source that you require, so `Purrl` can be used to make substitute API calls.
 
 ## Example
 
@@ -93,13 +93,13 @@ pulumi.export("response", purrl_command.response)
 package main
 
 import (
-	"github.com/pulumiverse/pulumi-purrl/sdk/go/pucurl/pucurl"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-purrl/sdk/go/purrl"
 )
 
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
-		puCurl, err := pucurl.NewPuCurl(ctx, "pucurl", &pucurl.PuCurlArgs{
+		purrl, err := purrl.NewPurrl(ctx, "purrl", &purrl.PurrlArgs{
 			Url:  pulumi.String("https://httpbin.org/get"),
 			Name: pulumi.String("httpbin"),
 			ResponseCodes: pulumi.StringArray{
@@ -118,7 +118,7 @@ func main() {
 		if err != nil {
 			return err
 		}
-		ctx.Export("puCurl", puCurl.Response)
+		ctx.Export("response", purrl.Response)
 		return nil
 	})
 }
