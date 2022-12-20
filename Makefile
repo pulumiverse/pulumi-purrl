@@ -57,6 +57,7 @@ nodejs_sdk::
 	cd ${PACKDIR}/nodejs/ && \
 		yarn install && \
 		yarn run tsc
+	cp -R ${PACKDIR}/nodejs/scripts/ ${PACKDIR}/nodejs/bin/
 	cp README.md LICENSE ${PACKDIR}/nodejs/package.json ${PACKDIR}/nodejs/yarn.lock ${PACKDIR}/nodejs/bin/
 	sed -i.bak 's/$${VERSION}/$(VERSION)/g' ${PACKDIR}/nodejs/bin/package.json
 
