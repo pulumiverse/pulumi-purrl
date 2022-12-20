@@ -1,4 +1,5 @@
 /nodejs/bin/
 /nodejs/node_modules/
 /python/bin/
-/java/.gradle/
+**/build/libs/
+**/.gradle
