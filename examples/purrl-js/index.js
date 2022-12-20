@@ -1,6 +1,7 @@
-import * as purrl from "@pulumiverse/purrl";
+"use strict";
+const purrl = require("@pulumiverse/purrl")
 
-let purrlCommand = new purrl.Purrl("purrl", {
+const purrlCommand = new purrl.Purrl("purrl", {
     name: "httpbin",
     url: "https://httpbin.org/get",
     method: "GET",
@@ -17,4 +18,4 @@ let purrlCommand = new purrl.Purrl("purrl", {
     ],
 });
 
-export const response = purrlCommand.response
+exports.response = purrlCommand.response;

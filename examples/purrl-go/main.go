@@ -26,7 +26,7 @@ func main() {
 		if err != nil {
 			return err
 		}
-		ctx.Export("purrl", purrl.Response)
+		ctx.Export("response", purrl.Response)
 		return nil
 	})
 }
