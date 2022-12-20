@@ -8,15 +8,83 @@ This provider is designed to be a flexible extension of your Pulumi code to make
 
 ## Example
 
-{{< chooser language "typescript,python,go,csharp" >}}
+{{< chooser language "javascript,typescript,python,go,csharp" >}}
+
+{{% choosable language javascript %}}
+
+```javascript
+"use strict";
+const purrl = require("@pulumiverse/purrl")
+
+const purrlCommand = new purrl.Purrl("purrl", {
+    name: "httpbin",
+    url: "https://httpbin.org/get",
+    method: "GET",
+    headers: {
+        "test": "test",
+    },
+    responseCodes: [
+        "200"
+    ],
+    deleteMethod: "DELETE",
+    deleteUrl: "https://httpbin.org/delete",
+    deleteResponseCodes: [
+        "200"
+    ],
+});
+
+exports.response = purrlCommand.response;
+```
+
+{{% /choosable %}}
+
 {{% choosable language typescript %}}
 
-TODO
+```typescript
+import * as purrl from "@pulumiverse/purrl";
+
+let purrlCommand = new purrl.Purrl("purrl", {
+    name: "httpbin",
+    url: "https://httpbin.org/get",
+    method: "GET",
+    headers: {
+        "test": "test",
+    },
+    responseCodes: [
+        "200"
+    ],
+    deleteMethod: "DELETE",
+    deleteUrl: "https://httpbin.org/delete",
+    deleteResponseCodes: [
+        "200"
+    ],
+});
+
+export const url = purrlCommand.response
+```
 
 {{% /choosable %}}
 {{% choosable language python %}}
 
-TODO
+```python
+import pulumiverse_purrl as purrl
+import pulumi
+
+purrl_command = purrl.Purrl("purrl-python", name="purrl-python",
+                            method="GET",
+                            headers={
+                                "test": "test"
+                            },
+                            url="https://httpbin.org/get",
+                            response_codes=[
+                                "200"],
+                            delete_method="DELETE",
+                            delete_url="https://httpbin.org/delete",
+                            delete_response_codes=["200"]
+                            )
+
+pulumi.export("response", purrl_command.response)
+```
 
 {{% /choosable %}}
 {{% choosable language go %}}
@@ -54,6 +122,37 @@ func main() {
 		return nil
 	})
 }
+```
+
+{{% /choosable %}}
+
+{{% choosable language csharp %}}
+
+```csharp
+using System.Collections.Generic;
+using Pulumi;
+using Pulumiverse.Purrl;
+
+return await Deployment.RunAsync(() =>
+{
+   var purrl =new Purrl("purrl", new PurrlArgs
+   {
+      Name = "httpbin",
+      Url = "https://httpbin.org/get",
+      ResponseCodes = new List<string> { "200" },
+      Method = "GET",
+      Headers = new Dictionary<string, string> { { "test", "test" } },
+      DeleteMethod = "DELETE",
+      DeleteUrl = "https://httpbin.org/delete",
+      DeleteResponseCodes = new List<string> { "200" },
+   });
+
+   // Export outputs here
+   return new Dictionary<string, object?>
+   {
+      ["response"] =purrl.Response
+   };
+});
 ```
 
 {{% /choosable %}}

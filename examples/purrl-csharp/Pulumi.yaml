@@ -1,0 +1,3 @@
+name: purrl-csharp
+description: A minimal C# Pulumi program
+runtime: dotnet

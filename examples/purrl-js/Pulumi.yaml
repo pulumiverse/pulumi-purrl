@@ -1,0 +1,6 @@
+name: purrl-js
+description: A minimal JavaScript Pulumi program
+runtime:
+    name: nodejs
+    options:
+        typescript: false
