@@ -89,7 +89,7 @@ jobs:
         with:
           dotnet-version: ${{matrix.dotnetverson}}
       - name: Setup Python
-        uses: actions/setup-python@5ccb29d8773c3f3f653e1705f474dfaa8a06a912 # tag=v4.2.0
+        uses: actions/setup-python@5ccb29d8773c3f3f653e1705f474dfaa8a06a912 # tag=v4.4.0
         with:
           python-version: ${{matrix.pythonversion}}
       - name: Build SDK
