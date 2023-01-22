@@ -5,6 +5,7 @@ package com.pulumiverse.purrl;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +61,21 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Map<String,String>>> deleteHeaders() {
         return Optional.ofNullable(this.deleteHeaders);
+    }
+
+    /**
+     * Skip TLS verification.
+     * 
+     */
+    @Import(name="deleteInsecureSkipTLSVerify")
+    private @Nullable Output<Boolean> deleteInsecureSkipTLSVerify;
+
+    /**
+     * @return Skip TLS verification.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteInsecureSkipTLSVerify() {
+        return Optional.ofNullable(this.deleteInsecureSkipTLSVerify);
     }
 
     /**
@@ -120,6 +136,21 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Map<String,String>>> headers() {
         return Optional.ofNullable(this.headers);
+    }
+
+    /**
+     * Skip TLS verification.
+     * 
+     */
+    @Import(name="insecureSkipTLSVerify")
+    private @Nullable Output<Boolean> insecureSkipTLSVerify;
+
+    /**
+     * @return Skip TLS verification.
+     * 
+     */
+    public Optional<Output<Boolean>> insecureSkipTLSVerify() {
+        return Optional.ofNullable(this.insecureSkipTLSVerify);
     }
 
     /**
@@ -188,10 +219,12 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
         this.body = $.body;
         this.deleteBody = $.deleteBody;
         this.deleteHeaders = $.deleteHeaders;
+        this.deleteInsecureSkipTLSVerify = $.deleteInsecureSkipTLSVerify;
         this.deleteMethod = $.deleteMethod;
         this.deleteResponseCodes = $.deleteResponseCodes;
         this.deleteUrl = $.deleteUrl;
         this.headers = $.headers;
+        this.insecureSkipTLSVerify = $.insecureSkipTLSVerify;
         this.method = $.method;
         this.name = $.name;
         this.responseCodes = $.responseCodes;
@@ -277,6 +310,27 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder deleteHeaders(Map<String,String> deleteHeaders) {
             return deleteHeaders(Output.of(deleteHeaders));
+        }
+
+        /**
+         * @param deleteInsecureSkipTLSVerify Skip TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteInsecureSkipTLSVerify(@Nullable Output<Boolean> deleteInsecureSkipTLSVerify) {
+            $.deleteInsecureSkipTLSVerify = deleteInsecureSkipTLSVerify;
+            return this;
+        }
+
+        /**
+         * @param deleteInsecureSkipTLSVerify Skip TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteInsecureSkipTLSVerify(Boolean deleteInsecureSkipTLSVerify) {
+            return deleteInsecureSkipTLSVerify(Output.of(deleteInsecureSkipTLSVerify));
         }
 
         /**
@@ -371,6 +425,27 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder headers(Map<String,String> headers) {
             return headers(Output.of(headers));
+        }
+
+        /**
+         * @param insecureSkipTLSVerify Skip TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder insecureSkipTLSVerify(@Nullable Output<Boolean> insecureSkipTLSVerify) {
+            $.insecureSkipTLSVerify = insecureSkipTLSVerify;
+            return this;
+        }
+
+        /**
+         * @param insecureSkipTLSVerify Skip TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder insecureSkipTLSVerify(Boolean insecureSkipTLSVerify) {
+            return insecureSkipTLSVerify(Output.of(insecureSkipTLSVerify));
         }
 
         /**

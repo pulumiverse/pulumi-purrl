@@ -21,6 +21,8 @@ type Purrl struct {
 	DeleteBody pulumi.StringPtrOutput `pulumi:"deleteBody"`
 	// The headers to send with the request.
 	DeleteHeaders pulumi.StringMapOutput `pulumi:"deleteHeaders"`
+	// Skip TLS verification.
+	DeleteInsecureSkipTLSVerify pulumi.BoolPtrOutput `pulumi:"deleteInsecureSkipTLSVerify"`
 	// The HTTP method to use.
 	DeleteMethod pulumi.StringPtrOutput `pulumi:"deleteMethod"`
 	// The response from the API call.
@@ -31,6 +33,8 @@ type Purrl struct {
 	DeleteUrl pulumi.StringPtrOutput `pulumi:"deleteUrl"`
 	// The headers to send with the request.
 	Headers pulumi.StringMapOutput `pulumi:"headers"`
+	// Skip TLS verification.
+	InsecureSkipTLSVerify pulumi.BoolPtrOutput `pulumi:"insecureSkipTLSVerify"`
 	// The HTTP method to use.
 	Method pulumi.StringOutput `pulumi:"method"`
 	// The name for this API call.
@@ -101,6 +105,8 @@ type purrlArgs struct {
 	DeleteBody *string `pulumi:"deleteBody"`
 	// The headers to send with the request.
 	DeleteHeaders map[string]string `pulumi:"deleteHeaders"`
+	// Skip TLS verification.
+	DeleteInsecureSkipTLSVerify *bool `pulumi:"deleteInsecureSkipTLSVerify"`
 	// The HTTP method to use.
 	DeleteMethod *string `pulumi:"deleteMethod"`
 	// The expected response code.
@@ -109,6 +115,8 @@ type purrlArgs struct {
 	DeleteUrl *string `pulumi:"deleteUrl"`
 	// The headers to send with the request.
 	Headers map[string]string `pulumi:"headers"`
+	// Skip TLS verification.
+	InsecureSkipTLSVerify *bool `pulumi:"insecureSkipTLSVerify"`
 	// The HTTP method to use.
 	Method string `pulumi:"method"`
 	// The name for this API call.
@@ -127,6 +135,8 @@ type PurrlArgs struct {
 	DeleteBody pulumi.StringPtrInput
 	// The headers to send with the request.
 	DeleteHeaders pulumi.StringMapInput
+	// Skip TLS verification.
+	DeleteInsecureSkipTLSVerify pulumi.BoolPtrInput
 	// The HTTP method to use.
 	DeleteMethod pulumi.StringPtrInput
 	// The expected response code.
@@ -135,6 +145,8 @@ type PurrlArgs struct {
 	DeleteUrl pulumi.StringPtrInput
 	// The headers to send with the request.
 	Headers pulumi.StringMapInput
+	// Skip TLS verification.
+	InsecureSkipTLSVerify pulumi.BoolPtrInput
 	// The HTTP method to use.
 	Method pulumi.StringInput
 	// The name for this API call.
@@ -247,6 +259,11 @@ func (o PurrlOutput) DeleteHeaders() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringMapOutput { return v.DeleteHeaders }).(pulumi.StringMapOutput)
 }
 
+// Skip TLS verification.
+func (o PurrlOutput) DeleteInsecureSkipTLSVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.BoolPtrOutput { return v.DeleteInsecureSkipTLSVerify }).(pulumi.BoolPtrOutput)
+}
+
 // The HTTP method to use.
 func (o PurrlOutput) DeleteMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.DeleteMethod }).(pulumi.StringPtrOutput)
@@ -270,6 +287,11 @@ func (o PurrlOutput) DeleteUrl() pulumi.StringPtrOutput {
 // The headers to send with the request.
 func (o PurrlOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringMapOutput { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+// Skip TLS verification.
+func (o PurrlOutput) InsecureSkipTLSVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.BoolPtrOutput { return v.InsecureSkipTLSVerify }).(pulumi.BoolPtrOutput)
 }
 
 // The HTTP method to use.
