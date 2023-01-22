@@ -23,10 +23,34 @@ namespace Pulumiverse.Purrl
         public Output<string?> Body { get; private set; } = null!;
 
         /// <summary>
+        /// The CA certificate if server cert is not signed by a trusted CA.
+        /// </summary>
+        [Output("caCert")]
+        public Output<string?> CaCert { get; private set; } = null!;
+
+        /// <summary>
+        /// The client certificate to use for TLS verification.
+        /// </summary>
+        [Output("cert")]
+        public Output<string?> Cert { get; private set; } = null!;
+
+        /// <summary>
         /// The body of the request.
         /// </summary>
         [Output("deleteBody")]
         public Output<string?> DeleteBody { get; private set; } = null!;
+
+        /// <summary>
+        /// The CA certificate if server cert is not signed by a trusted CA.
+        /// </summary>
+        [Output("deleteCaCert")]
+        public Output<string?> DeleteCaCert { get; private set; } = null!;
+
+        /// <summary>
+        /// The client certificate to use for TLS verification.
+        /// </summary>
+        [Output("deleteCert")]
+        public Output<string?> DeleteCert { get; private set; } = null!;
 
         /// <summary>
         /// The headers to send with the request.
@@ -39,6 +63,12 @@ namespace Pulumiverse.Purrl
         /// </summary>
         [Output("deleteInsecureSkipTLSVerify")]
         public Output<bool?> DeleteInsecureSkipTLSVerify { get; private set; } = null!;
+
+        /// <summary>
+        /// The client key to use for TLS verification.
+        /// </summary>
+        [Output("deleteKey")]
+        public Output<string?> DeleteKey { get; private set; } = null!;
 
         /// <summary>
         /// The HTTP method to use.
@@ -75,6 +105,12 @@ namespace Pulumiverse.Purrl
         /// </summary>
         [Output("insecureSkipTLSVerify")]
         public Output<bool?> InsecureSkipTLSVerify { get; private set; } = null!;
+
+        /// <summary>
+        /// The client key to use for TLS verification.
+        /// </summary>
+        [Output("key")]
+        public Output<string?> Key { get; private set; } = null!;
 
         /// <summary>
         /// The HTTP method to use.
@@ -159,10 +195,34 @@ namespace Pulumiverse.Purrl
         public Input<string>? Body { get; set; }
 
         /// <summary>
+        /// The CA certificate if server cert is not signed by a trusted CA.
+        /// </summary>
+        [Input("caCert")]
+        public Input<string>? CaCert { get; set; }
+
+        /// <summary>
+        /// The client certificate to use for TLS verification.
+        /// </summary>
+        [Input("cert")]
+        public Input<string>? Cert { get; set; }
+
+        /// <summary>
         /// The body of the request.
         /// </summary>
         [Input("deleteBody")]
         public Input<string>? DeleteBody { get; set; }
+
+        /// <summary>
+        /// The CA certificate if server cert is not signed by a trusted CA.
+        /// </summary>
+        [Input("deleteCaCert")]
+        public Input<string>? DeleteCaCert { get; set; }
+
+        /// <summary>
+        /// The client certificate to use for TLS verification.
+        /// </summary>
+        [Input("deleteCert")]
+        public Input<string>? DeleteCert { get; set; }
 
         [Input("deleteHeaders")]
         private InputMap<string>? _deleteHeaders;
@@ -181,6 +241,12 @@ namespace Pulumiverse.Purrl
         /// </summary>
         [Input("deleteInsecureSkipTLSVerify")]
         public Input<bool>? DeleteInsecureSkipTLSVerify { get; set; }
+
+        /// <summary>
+        /// The client key to use for TLS verification.
+        /// </summary>
+        [Input("deleteKey")]
+        public Input<string>? DeleteKey { get; set; }
 
         /// <summary>
         /// The HTTP method to use.
@@ -223,6 +289,12 @@ namespace Pulumiverse.Purrl
         /// </summary>
         [Input("insecureSkipTLSVerify")]
         public Input<bool>? InsecureSkipTLSVerify { get; set; }
+
+        /// <summary>
+        /// The client key to use for TLS verification.
+        /// </summary>
+        [Input("key")]
+        public Input<string>? Key { get; set; }
 
         /// <summary>
         /// The HTTP method to use.

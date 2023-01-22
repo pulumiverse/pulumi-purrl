@@ -37,6 +37,34 @@ public class Purrl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.body);
     }
     /**
+     * The CA certificate if server cert is not signed by a trusted CA.
+     * 
+     */
+    @Export(name="caCert", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> caCert;
+
+    /**
+     * @return The CA certificate if server cert is not signed by a trusted CA.
+     * 
+     */
+    public Output<Optional<String>> caCert() {
+        return Codegen.optional(this.caCert);
+    }
+    /**
+     * The client certificate to use for TLS verification.
+     * 
+     */
+    @Export(name="cert", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> cert;
+
+    /**
+     * @return The client certificate to use for TLS verification.
+     * 
+     */
+    public Output<Optional<String>> cert() {
+        return Codegen.optional(this.cert);
+    }
+    /**
      * The body of the request.
      * 
      */
@@ -49,6 +77,34 @@ public class Purrl extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> deleteBody() {
         return Codegen.optional(this.deleteBody);
+    }
+    /**
+     * The CA certificate if server cert is not signed by a trusted CA.
+     * 
+     */
+    @Export(name="deleteCaCert", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> deleteCaCert;
+
+    /**
+     * @return The CA certificate if server cert is not signed by a trusted CA.
+     * 
+     */
+    public Output<Optional<String>> deleteCaCert() {
+        return Codegen.optional(this.deleteCaCert);
+    }
+    /**
+     * The client certificate to use for TLS verification.
+     * 
+     */
+    @Export(name="deleteCert", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> deleteCert;
+
+    /**
+     * @return The client certificate to use for TLS verification.
+     * 
+     */
+    public Output<Optional<String>> deleteCert() {
+        return Codegen.optional(this.deleteCert);
     }
     /**
      * The headers to send with the request.
@@ -77,6 +133,20 @@ public class Purrl extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> deleteInsecureSkipTLSVerify() {
         return Codegen.optional(this.deleteInsecureSkipTLSVerify);
+    }
+    /**
+     * The client key to use for TLS verification.
+     * 
+     */
+    @Export(name="deleteKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> deleteKey;
+
+    /**
+     * @return The client key to use for TLS verification.
+     * 
+     */
+    public Output<Optional<String>> deleteKey() {
+        return Codegen.optional(this.deleteKey);
     }
     /**
      * The HTTP method to use.
@@ -161,6 +231,20 @@ public class Purrl extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> insecureSkipTLSVerify() {
         return Codegen.optional(this.insecureSkipTLSVerify);
+    }
+    /**
+     * The client key to use for TLS verification.
+     * 
+     */
+    @Export(name="key", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> key;
+
+    /**
+     * @return The client key to use for TLS verification.
+     * 
+     */
+    public Output<Optional<String>> key() {
+        return Codegen.optional(this.key);
     }
     /**
      * The HTTP method to use.

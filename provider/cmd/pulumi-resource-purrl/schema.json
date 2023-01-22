@@ -57,8 +57,24 @@
                     "description": "The body of the request.",
                     "type": "string"
                 },
+                "caCert": {
+                    "description": "The CA certificate if server cert is not signed by a trusted CA.",
+                    "type": "string"
+                },
+                "cert": {
+                    "description": "The client certificate to use for TLS verification.",
+                    "type": "string"
+                },
                 "deleteBody": {
                     "description": "The body of the request.",
+                    "type": "string"
+                },
+                "deleteCaCert": {
+                    "description": "The CA certificate if server cert is not signed by a trusted CA.",
+                    "type": "string"
+                },
+                "deleteCert": {
+                    "description": "The client certificate to use for TLS verification.",
                     "type": "string"
                 },
                 "deleteHeaders": {
@@ -71,6 +87,10 @@
                 "deleteInsecureSkipTLSVerify": {
                     "description": "Skip TLS verification.",
                     "type": "boolean"
+                },
+                "deleteKey": {
+                    "description": "The client key to use for TLS verification.",
+                    "type": "string"
                 },
                 "deleteMethod": {
                     "description": "The HTTP method to use.",
@@ -98,6 +118,10 @@
                     "description": "Skip TLS verification.",
                     "type": "boolean"
                 },
+                "key": {
+                    "description": "The client key to use for TLS verification.",
+                    "type": "string"
+                },
                 "method": {
                     "description": "The HTTP method to use.",
                     "type": "string"
@@ -123,8 +147,24 @@
                     "description": "The body of the request.",
                     "type": "string"
                 },
+                "caCert": {
+                    "description": "The CA certificate if server cert is not signed by a trusted CA.",
+                    "type": "string"
+                },
+                "cert": {
+                    "description": "The client certificate to use for TLS verification.",
+                    "type": "string"
+                },
                 "deleteBody": {
                     "description": "The body of the request.",
+                    "type": "string"
+                },
+                "deleteCaCert": {
+                    "description": "The CA certificate if server cert is not signed by a trusted CA.",
+                    "type": "string"
+                },
+                "deleteCert": {
+                    "description": "The client certificate to use for TLS verification.",
                     "type": "string"
                 },
                 "deleteHeaders": {
@@ -137,6 +177,10 @@
                 "deleteInsecureSkipTLSVerify": {
                     "description": "Skip TLS verification.",
                     "type": "boolean"
+                },
+                "deleteKey": {
+                    "description": "The client key to use for TLS verification.",
+                    "type": "string"
                 },
                 "deleteMethod": {
                     "description": "The HTTP method to use.",
@@ -167,6 +211,10 @@
                 "insecureSkipTLSVerify": {
                     "description": "Skip TLS verification.",
                     "type": "boolean"
+                },
+                "key": {
+                    "description": "The client key to use for TLS verification.",
+                    "type": "string"
                 },
                 "method": {
                     "description": "The HTTP method to use.",
