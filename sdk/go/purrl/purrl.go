@@ -17,12 +17,22 @@ type Purrl struct {
 
 	// The body of the request.
 	Body pulumi.StringPtrOutput `pulumi:"body"`
+	// The CA certificate if server cert is not signed by a trusted CA.
+	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
+	// The client certificate to use for TLS verification.
+	Cert pulumi.StringPtrOutput `pulumi:"cert"`
 	// The body of the request.
 	DeleteBody pulumi.StringPtrOutput `pulumi:"deleteBody"`
+	// The CA certificate if server cert is not signed by a trusted CA.
+	DeleteCaCert pulumi.StringPtrOutput `pulumi:"deleteCaCert"`
+	// The client certificate to use for TLS verification.
+	DeleteCert pulumi.StringPtrOutput `pulumi:"deleteCert"`
 	// The headers to send with the request.
 	DeleteHeaders pulumi.StringMapOutput `pulumi:"deleteHeaders"`
 	// Skip TLS verification.
 	DeleteInsecureSkipTLSVerify pulumi.BoolPtrOutput `pulumi:"deleteInsecureSkipTLSVerify"`
+	// The client key to use for TLS verification.
+	DeleteKey pulumi.StringPtrOutput `pulumi:"deleteKey"`
 	// The HTTP method to use.
 	DeleteMethod pulumi.StringPtrOutput `pulumi:"deleteMethod"`
 	// The response from the API call.
@@ -35,6 +45,8 @@ type Purrl struct {
 	Headers pulumi.StringMapOutput `pulumi:"headers"`
 	// Skip TLS verification.
 	InsecureSkipTLSVerify pulumi.BoolPtrOutput `pulumi:"insecureSkipTLSVerify"`
+	// The client key to use for TLS verification.
+	Key pulumi.StringPtrOutput `pulumi:"key"`
 	// The HTTP method to use.
 	Method pulumi.StringOutput `pulumi:"method"`
 	// The name for this API call.
@@ -101,12 +113,22 @@ func (PurrlState) ElementType() reflect.Type {
 type purrlArgs struct {
 	// The body of the request.
 	Body *string `pulumi:"body"`
+	// The CA certificate if server cert is not signed by a trusted CA.
+	CaCert *string `pulumi:"caCert"`
+	// The client certificate to use for TLS verification.
+	Cert *string `pulumi:"cert"`
 	// The body of the request.
 	DeleteBody *string `pulumi:"deleteBody"`
+	// The CA certificate if server cert is not signed by a trusted CA.
+	DeleteCaCert *string `pulumi:"deleteCaCert"`
+	// The client certificate to use for TLS verification.
+	DeleteCert *string `pulumi:"deleteCert"`
 	// The headers to send with the request.
 	DeleteHeaders map[string]string `pulumi:"deleteHeaders"`
 	// Skip TLS verification.
 	DeleteInsecureSkipTLSVerify *bool `pulumi:"deleteInsecureSkipTLSVerify"`
+	// The client key to use for TLS verification.
+	DeleteKey *string `pulumi:"deleteKey"`
 	// The HTTP method to use.
 	DeleteMethod *string `pulumi:"deleteMethod"`
 	// The expected response code.
@@ -117,6 +139,8 @@ type purrlArgs struct {
 	Headers map[string]string `pulumi:"headers"`
 	// Skip TLS verification.
 	InsecureSkipTLSVerify *bool `pulumi:"insecureSkipTLSVerify"`
+	// The client key to use for TLS verification.
+	Key *string `pulumi:"key"`
 	// The HTTP method to use.
 	Method string `pulumi:"method"`
 	// The name for this API call.
@@ -131,12 +155,22 @@ type purrlArgs struct {
 type PurrlArgs struct {
 	// The body of the request.
 	Body pulumi.StringPtrInput
+	// The CA certificate if server cert is not signed by a trusted CA.
+	CaCert pulumi.StringPtrInput
+	// The client certificate to use for TLS verification.
+	Cert pulumi.StringPtrInput
 	// The body of the request.
 	DeleteBody pulumi.StringPtrInput
+	// The CA certificate if server cert is not signed by a trusted CA.
+	DeleteCaCert pulumi.StringPtrInput
+	// The client certificate to use for TLS verification.
+	DeleteCert pulumi.StringPtrInput
 	// The headers to send with the request.
 	DeleteHeaders pulumi.StringMapInput
 	// Skip TLS verification.
 	DeleteInsecureSkipTLSVerify pulumi.BoolPtrInput
+	// The client key to use for TLS verification.
+	DeleteKey pulumi.StringPtrInput
 	// The HTTP method to use.
 	DeleteMethod pulumi.StringPtrInput
 	// The expected response code.
@@ -147,6 +181,8 @@ type PurrlArgs struct {
 	Headers pulumi.StringMapInput
 	// Skip TLS verification.
 	InsecureSkipTLSVerify pulumi.BoolPtrInput
+	// The client key to use for TLS verification.
+	Key pulumi.StringPtrInput
 	// The HTTP method to use.
 	Method pulumi.StringInput
 	// The name for this API call.
@@ -249,9 +285,29 @@ func (o PurrlOutput) Body() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.Body }).(pulumi.StringPtrOutput)
 }
 
+// The CA certificate if server cert is not signed by a trusted CA.
+func (o PurrlOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.CaCert }).(pulumi.StringPtrOutput)
+}
+
+// The client certificate to use for TLS verification.
+func (o PurrlOutput) Cert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.Cert }).(pulumi.StringPtrOutput)
+}
+
 // The body of the request.
 func (o PurrlOutput) DeleteBody() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.DeleteBody }).(pulumi.StringPtrOutput)
+}
+
+// The CA certificate if server cert is not signed by a trusted CA.
+func (o PurrlOutput) DeleteCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.DeleteCaCert }).(pulumi.StringPtrOutput)
+}
+
+// The client certificate to use for TLS verification.
+func (o PurrlOutput) DeleteCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.DeleteCert }).(pulumi.StringPtrOutput)
 }
 
 // The headers to send with the request.
@@ -262,6 +318,11 @@ func (o PurrlOutput) DeleteHeaders() pulumi.StringMapOutput {
 // Skip TLS verification.
 func (o PurrlOutput) DeleteInsecureSkipTLSVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.BoolPtrOutput { return v.DeleteInsecureSkipTLSVerify }).(pulumi.BoolPtrOutput)
+}
+
+// The client key to use for TLS verification.
+func (o PurrlOutput) DeleteKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.DeleteKey }).(pulumi.StringPtrOutput)
 }
 
 // The HTTP method to use.
@@ -292,6 +353,11 @@ func (o PurrlOutput) Headers() pulumi.StringMapOutput {
 // Skip TLS verification.
 func (o PurrlOutput) InsecureSkipTLSVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.BoolPtrOutput { return v.InsecureSkipTLSVerify }).(pulumi.BoolPtrOutput)
+}
+
+// The client key to use for TLS verification.
+func (o PurrlOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.Key }).(pulumi.StringPtrOutput)
 }
 
 // The HTTP method to use.

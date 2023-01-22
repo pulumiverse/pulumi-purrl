@@ -34,6 +34,36 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The CA certificate if server cert is not signed by a trusted CA.
+     * 
+     */
+    @Import(name="caCert")
+    private @Nullable Output<String> caCert;
+
+    /**
+     * @return The CA certificate if server cert is not signed by a trusted CA.
+     * 
+     */
+    public Optional<Output<String>> caCert() {
+        return Optional.ofNullable(this.caCert);
+    }
+
+    /**
+     * The client certificate to use for TLS verification.
+     * 
+     */
+    @Import(name="cert")
+    private @Nullable Output<String> cert;
+
+    /**
+     * @return The client certificate to use for TLS verification.
+     * 
+     */
+    public Optional<Output<String>> cert() {
+        return Optional.ofNullable(this.cert);
+    }
+
+    /**
      * The body of the request.
      * 
      */
@@ -46,6 +76,36 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> deleteBody() {
         return Optional.ofNullable(this.deleteBody);
+    }
+
+    /**
+     * The CA certificate if server cert is not signed by a trusted CA.
+     * 
+     */
+    @Import(name="deleteCaCert")
+    private @Nullable Output<String> deleteCaCert;
+
+    /**
+     * @return The CA certificate if server cert is not signed by a trusted CA.
+     * 
+     */
+    public Optional<Output<String>> deleteCaCert() {
+        return Optional.ofNullable(this.deleteCaCert);
+    }
+
+    /**
+     * The client certificate to use for TLS verification.
+     * 
+     */
+    @Import(name="deleteCert")
+    private @Nullable Output<String> deleteCert;
+
+    /**
+     * @return The client certificate to use for TLS verification.
+     * 
+     */
+    public Optional<Output<String>> deleteCert() {
+        return Optional.ofNullable(this.deleteCert);
     }
 
     /**
@@ -76,6 +136,21 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> deleteInsecureSkipTLSVerify() {
         return Optional.ofNullable(this.deleteInsecureSkipTLSVerify);
+    }
+
+    /**
+     * The client key to use for TLS verification.
+     * 
+     */
+    @Import(name="deleteKey")
+    private @Nullable Output<String> deleteKey;
+
+    /**
+     * @return The client key to use for TLS verification.
+     * 
+     */
+    public Optional<Output<String>> deleteKey() {
+        return Optional.ofNullable(this.deleteKey);
     }
 
     /**
@@ -154,6 +229,21 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The client key to use for TLS verification.
+     * 
+     */
+    @Import(name="key")
+    private @Nullable Output<String> key;
+
+    /**
+     * @return The client key to use for TLS verification.
+     * 
+     */
+    public Optional<Output<String>> key() {
+        return Optional.ofNullable(this.key);
+    }
+
+    /**
      * The HTTP method to use.
      * 
      */
@@ -217,14 +307,20 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
 
     private PurrlArgs(PurrlArgs $) {
         this.body = $.body;
+        this.caCert = $.caCert;
+        this.cert = $.cert;
         this.deleteBody = $.deleteBody;
+        this.deleteCaCert = $.deleteCaCert;
+        this.deleteCert = $.deleteCert;
         this.deleteHeaders = $.deleteHeaders;
         this.deleteInsecureSkipTLSVerify = $.deleteInsecureSkipTLSVerify;
+        this.deleteKey = $.deleteKey;
         this.deleteMethod = $.deleteMethod;
         this.deleteResponseCodes = $.deleteResponseCodes;
         this.deleteUrl = $.deleteUrl;
         this.headers = $.headers;
         this.insecureSkipTLSVerify = $.insecureSkipTLSVerify;
+        this.key = $.key;
         this.method = $.method;
         this.name = $.name;
         this.responseCodes = $.responseCodes;
@@ -271,6 +367,48 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param caCert The CA certificate if server cert is not signed by a trusted CA.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder caCert(@Nullable Output<String> caCert) {
+            $.caCert = caCert;
+            return this;
+        }
+
+        /**
+         * @param caCert The CA certificate if server cert is not signed by a trusted CA.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder caCert(String caCert) {
+            return caCert(Output.of(caCert));
+        }
+
+        /**
+         * @param cert The client certificate to use for TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cert(@Nullable Output<String> cert) {
+            $.cert = cert;
+            return this;
+        }
+
+        /**
+         * @param cert The client certificate to use for TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cert(String cert) {
+            return cert(Output.of(cert));
+        }
+
+        /**
          * @param deleteBody The body of the request.
          * 
          * @return builder
@@ -289,6 +427,48 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder deleteBody(String deleteBody) {
             return deleteBody(Output.of(deleteBody));
+        }
+
+        /**
+         * @param deleteCaCert The CA certificate if server cert is not signed by a trusted CA.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteCaCert(@Nullable Output<String> deleteCaCert) {
+            $.deleteCaCert = deleteCaCert;
+            return this;
+        }
+
+        /**
+         * @param deleteCaCert The CA certificate if server cert is not signed by a trusted CA.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteCaCert(String deleteCaCert) {
+            return deleteCaCert(Output.of(deleteCaCert));
+        }
+
+        /**
+         * @param deleteCert The client certificate to use for TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteCert(@Nullable Output<String> deleteCert) {
+            $.deleteCert = deleteCert;
+            return this;
+        }
+
+        /**
+         * @param deleteCert The client certificate to use for TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteCert(String deleteCert) {
+            return deleteCert(Output.of(deleteCert));
         }
 
         /**
@@ -331,6 +511,27 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder deleteInsecureSkipTLSVerify(Boolean deleteInsecureSkipTLSVerify) {
             return deleteInsecureSkipTLSVerify(Output.of(deleteInsecureSkipTLSVerify));
+        }
+
+        /**
+         * @param deleteKey The client key to use for TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteKey(@Nullable Output<String> deleteKey) {
+            $.deleteKey = deleteKey;
+            return this;
+        }
+
+        /**
+         * @param deleteKey The client key to use for TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteKey(String deleteKey) {
+            return deleteKey(Output.of(deleteKey));
         }
 
         /**
@@ -446,6 +647,27 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder insecureSkipTLSVerify(Boolean insecureSkipTLSVerify) {
             return insecureSkipTLSVerify(Output.of(insecureSkipTLSVerify));
+        }
+
+        /**
+         * @param key The client key to use for TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder key(@Nullable Output<String> key) {
+            $.key = key;
+            return this;
+        }
+
+        /**
+         * @param key The client key to use for TLS verification.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder key(String key) {
+            return key(Output.of(key));
         }
 
         /**

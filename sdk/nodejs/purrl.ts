@@ -39,9 +39,25 @@ export class Purrl extends pulumi.CustomResource {
      */
     public readonly body!: pulumi.Output<string | undefined>;
     /**
+     * The CA certificate if server cert is not signed by a trusted CA.
+     */
+    public readonly caCert!: pulumi.Output<string | undefined>;
+    /**
+     * The client certificate to use for TLS verification.
+     */
+    public readonly cert!: pulumi.Output<string | undefined>;
+    /**
      * The body of the request.
      */
     public readonly deleteBody!: pulumi.Output<string | undefined>;
+    /**
+     * The CA certificate if server cert is not signed by a trusted CA.
+     */
+    public readonly deleteCaCert!: pulumi.Output<string | undefined>;
+    /**
+     * The client certificate to use for TLS verification.
+     */
+    public readonly deleteCert!: pulumi.Output<string | undefined>;
     /**
      * The headers to send with the request.
      */
@@ -50,6 +66,10 @@ export class Purrl extends pulumi.CustomResource {
      * Skip TLS verification.
      */
     public readonly deleteInsecureSkipTLSVerify!: pulumi.Output<boolean | undefined>;
+    /**
+     * The client key to use for TLS verification.
+     */
+    public readonly deleteKey!: pulumi.Output<string | undefined>;
     /**
      * The HTTP method to use.
      */
@@ -74,6 +94,10 @@ export class Purrl extends pulumi.CustomResource {
      * Skip TLS verification.
      */
     public readonly insecureSkipTLSVerify!: pulumi.Output<boolean | undefined>;
+    /**
+     * The client key to use for TLS verification.
+     */
+    public readonly key!: pulumi.Output<string | undefined>;
     /**
      * The HTTP method to use.
      */
@@ -119,14 +143,20 @@ export class Purrl extends pulumi.CustomResource {
                 throw new Error("Missing required property 'url'");
             }
             resourceInputs["body"] = args ? args.body : undefined;
+            resourceInputs["caCert"] = args ? args.caCert : undefined;
+            resourceInputs["cert"] = args ? args.cert : undefined;
             resourceInputs["deleteBody"] = args ? args.deleteBody : undefined;
+            resourceInputs["deleteCaCert"] = args ? args.deleteCaCert : undefined;
+            resourceInputs["deleteCert"] = args ? args.deleteCert : undefined;
             resourceInputs["deleteHeaders"] = args ? args.deleteHeaders : undefined;
             resourceInputs["deleteInsecureSkipTLSVerify"] = args ? args.deleteInsecureSkipTLSVerify : undefined;
+            resourceInputs["deleteKey"] = args ? args.deleteKey : undefined;
             resourceInputs["deleteMethod"] = args ? args.deleteMethod : undefined;
             resourceInputs["deleteResponseCodes"] = args ? args.deleteResponseCodes : undefined;
             resourceInputs["deleteUrl"] = args ? args.deleteUrl : undefined;
             resourceInputs["headers"] = args ? args.headers : undefined;
             resourceInputs["insecureSkipTLSVerify"] = args ? args.insecureSkipTLSVerify : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
             resourceInputs["method"] = args ? args.method : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["responseCodes"] = args ? args.responseCodes : undefined;
@@ -135,15 +165,21 @@ export class Purrl extends pulumi.CustomResource {
             resourceInputs["response"] = undefined /*out*/;
         } else {
             resourceInputs["body"] = undefined /*out*/;
+            resourceInputs["caCert"] = undefined /*out*/;
+            resourceInputs["cert"] = undefined /*out*/;
             resourceInputs["deleteBody"] = undefined /*out*/;
+            resourceInputs["deleteCaCert"] = undefined /*out*/;
+            resourceInputs["deleteCert"] = undefined /*out*/;
             resourceInputs["deleteHeaders"] = undefined /*out*/;
             resourceInputs["deleteInsecureSkipTLSVerify"] = undefined /*out*/;
+            resourceInputs["deleteKey"] = undefined /*out*/;
             resourceInputs["deleteMethod"] = undefined /*out*/;
             resourceInputs["deleteResponse"] = undefined /*out*/;
             resourceInputs["deleteResponseCodes"] = undefined /*out*/;
             resourceInputs["deleteUrl"] = undefined /*out*/;
             resourceInputs["headers"] = undefined /*out*/;
             resourceInputs["insecureSkipTLSVerify"] = undefined /*out*/;
+            resourceInputs["key"] = undefined /*out*/;
             resourceInputs["method"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["response"] = undefined /*out*/;
@@ -164,9 +200,25 @@ export interface PurrlArgs {
      */
     body?: pulumi.Input<string>;
     /**
+     * The CA certificate if server cert is not signed by a trusted CA.
+     */
+    caCert?: pulumi.Input<string>;
+    /**
+     * The client certificate to use for TLS verification.
+     */
+    cert?: pulumi.Input<string>;
+    /**
      * The body of the request.
      */
     deleteBody?: pulumi.Input<string>;
+    /**
+     * The CA certificate if server cert is not signed by a trusted CA.
+     */
+    deleteCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate to use for TLS verification.
+     */
+    deleteCert?: pulumi.Input<string>;
     /**
      * The headers to send with the request.
      */
@@ -175,6 +227,10 @@ export interface PurrlArgs {
      * Skip TLS verification.
      */
     deleteInsecureSkipTLSVerify?: pulumi.Input<boolean>;
+    /**
+     * The client key to use for TLS verification.
+     */
+    deleteKey?: pulumi.Input<string>;
     /**
      * The HTTP method to use.
      */
@@ -195,6 +251,10 @@ export interface PurrlArgs {
      * Skip TLS verification.
      */
     insecureSkipTLSVerify?: pulumi.Input<boolean>;
+    /**
+     * The client key to use for TLS verification.
+     */
+    key?: pulumi.Input<string>;
     /**
      * The HTTP method to use.
      */

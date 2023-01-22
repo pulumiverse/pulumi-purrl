@@ -19,14 +19,20 @@ class PurrlArgs:
                  response_codes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  url: pulumi.Input[str],
                  body: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 cert: Optional[pulumi.Input[str]] = None,
                  delete_body: Optional[pulumi.Input[str]] = None,
+                 delete_ca_cert: Optional[pulumi.Input[str]] = None,
+                 delete_cert: Optional[pulumi.Input[str]] = None,
                  delete_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  delete_insecure_skip_tls_verify: Optional[pulumi.Input[bool]] = None,
+                 delete_key: Optional[pulumi.Input[str]] = None,
                  delete_method: Optional[pulumi.Input[str]] = None,
                  delete_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  delete_url: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 insecure_skip_tls_verify: Optional[pulumi.Input[bool]] = None):
+                 insecure_skip_tls_verify: Optional[pulumi.Input[bool]] = None,
+                 key: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Purrl resource.
         :param pulumi.Input[str] method: The HTTP method to use.
@@ -34,14 +40,20 @@ class PurrlArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] response_codes: The expected response code.
         :param pulumi.Input[str] url: The API endpoint to call.
         :param pulumi.Input[str] body: The body of the request.
+        :param pulumi.Input[str] ca_cert: The CA certificate if server cert is not signed by a trusted CA.
+        :param pulumi.Input[str] cert: The client certificate to use for TLS verification.
         :param pulumi.Input[str] delete_body: The body of the request.
+        :param pulumi.Input[str] delete_ca_cert: The CA certificate if server cert is not signed by a trusted CA.
+        :param pulumi.Input[str] delete_cert: The client certificate to use for TLS verification.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] delete_headers: The headers to send with the request.
         :param pulumi.Input[bool] delete_insecure_skip_tls_verify: Skip TLS verification.
+        :param pulumi.Input[str] delete_key: The client key to use for TLS verification.
         :param pulumi.Input[str] delete_method: The HTTP method to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delete_response_codes: The expected response code.
         :param pulumi.Input[str] delete_url: The API endpoint to call.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] headers: The headers to send with the request.
         :param pulumi.Input[bool] insecure_skip_tls_verify: Skip TLS verification.
+        :param pulumi.Input[str] key: The client key to use for TLS verification.
         """
         pulumi.set(__self__, "method", method)
         pulumi.set(__self__, "name", name)
@@ -49,12 +61,22 @@ class PurrlArgs:
         pulumi.set(__self__, "url", url)
         if body is not None:
             pulumi.set(__self__, "body", body)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
         if delete_body is not None:
             pulumi.set(__self__, "delete_body", delete_body)
+        if delete_ca_cert is not None:
+            pulumi.set(__self__, "delete_ca_cert", delete_ca_cert)
+        if delete_cert is not None:
+            pulumi.set(__self__, "delete_cert", delete_cert)
         if delete_headers is not None:
             pulumi.set(__self__, "delete_headers", delete_headers)
         if delete_insecure_skip_tls_verify is not None:
             pulumi.set(__self__, "delete_insecure_skip_tls_verify", delete_insecure_skip_tls_verify)
+        if delete_key is not None:
+            pulumi.set(__self__, "delete_key", delete_key)
         if delete_method is not None:
             pulumi.set(__self__, "delete_method", delete_method)
         if delete_response_codes is not None:
@@ -65,6 +87,8 @@ class PurrlArgs:
             pulumi.set(__self__, "headers", headers)
         if insecure_skip_tls_verify is not None:
             pulumi.set(__self__, "insecure_skip_tls_verify", insecure_skip_tls_verify)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
 
     @property
     @pulumi.getter
@@ -127,6 +151,30 @@ class PurrlArgs:
         pulumi.set(self, "body", value)
 
     @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA certificate if server cert is not signed by a trusted CA.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @ca_cert.setter
+    def ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_cert", value)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client certificate to use for TLS verification.
+        """
+        return pulumi.get(self, "cert")
+
+    @cert.setter
+    def cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert", value)
+
+    @property
     @pulumi.getter(name="deleteBody")
     def delete_body(self) -> Optional[pulumi.Input[str]]:
         """
@@ -137,6 +185,30 @@ class PurrlArgs:
     @delete_body.setter
     def delete_body(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "delete_body", value)
+
+    @property
+    @pulumi.getter(name="deleteCaCert")
+    def delete_ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA certificate if server cert is not signed by a trusted CA.
+        """
+        return pulumi.get(self, "delete_ca_cert")
+
+    @delete_ca_cert.setter
+    def delete_ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delete_ca_cert", value)
+
+    @property
+    @pulumi.getter(name="deleteCert")
+    def delete_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client certificate to use for TLS verification.
+        """
+        return pulumi.get(self, "delete_cert")
+
+    @delete_cert.setter
+    def delete_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delete_cert", value)
 
     @property
     @pulumi.getter(name="deleteHeaders")
@@ -161,6 +233,18 @@ class PurrlArgs:
     @delete_insecure_skip_tls_verify.setter
     def delete_insecure_skip_tls_verify(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "delete_insecure_skip_tls_verify", value)
+
+    @property
+    @pulumi.getter(name="deleteKey")
+    def delete_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client key to use for TLS verification.
+        """
+        return pulumi.get(self, "delete_key")
+
+    @delete_key.setter
+    def delete_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delete_key", value)
 
     @property
     @pulumi.getter(name="deleteMethod")
@@ -222,6 +306,18 @@ class PurrlArgs:
     def insecure_skip_tls_verify(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "insecure_skip_tls_verify", value)
 
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client key to use for TLS verification.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
 
 class Purrl(pulumi.CustomResource):
     @overload
@@ -229,14 +325,20 @@ class Purrl(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  body: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 cert: Optional[pulumi.Input[str]] = None,
                  delete_body: Optional[pulumi.Input[str]] = None,
+                 delete_ca_cert: Optional[pulumi.Input[str]] = None,
+                 delete_cert: Optional[pulumi.Input[str]] = None,
                  delete_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  delete_insecure_skip_tls_verify: Optional[pulumi.Input[bool]] = None,
+                 delete_key: Optional[pulumi.Input[str]] = None,
                  delete_method: Optional[pulumi.Input[str]] = None,
                  delete_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  delete_url: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_tls_verify: Optional[pulumi.Input[bool]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -248,14 +350,20 @@ class Purrl(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] body: The body of the request.
+        :param pulumi.Input[str] ca_cert: The CA certificate if server cert is not signed by a trusted CA.
+        :param pulumi.Input[str] cert: The client certificate to use for TLS verification.
         :param pulumi.Input[str] delete_body: The body of the request.
+        :param pulumi.Input[str] delete_ca_cert: The CA certificate if server cert is not signed by a trusted CA.
+        :param pulumi.Input[str] delete_cert: The client certificate to use for TLS verification.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] delete_headers: The headers to send with the request.
         :param pulumi.Input[bool] delete_insecure_skip_tls_verify: Skip TLS verification.
+        :param pulumi.Input[str] delete_key: The client key to use for TLS verification.
         :param pulumi.Input[str] delete_method: The HTTP method to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delete_response_codes: The expected response code.
         :param pulumi.Input[str] delete_url: The API endpoint to call.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] headers: The headers to send with the request.
         :param pulumi.Input[bool] insecure_skip_tls_verify: Skip TLS verification.
+        :param pulumi.Input[str] key: The client key to use for TLS verification.
         :param pulumi.Input[str] method: The HTTP method to use.
         :param pulumi.Input[str] name: The name for this API call.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] response_codes: The expected response code.
@@ -286,14 +394,20 @@ class Purrl(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  body: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 cert: Optional[pulumi.Input[str]] = None,
                  delete_body: Optional[pulumi.Input[str]] = None,
+                 delete_ca_cert: Optional[pulumi.Input[str]] = None,
+                 delete_cert: Optional[pulumi.Input[str]] = None,
                  delete_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  delete_insecure_skip_tls_verify: Optional[pulumi.Input[bool]] = None,
+                 delete_key: Optional[pulumi.Input[str]] = None,
                  delete_method: Optional[pulumi.Input[str]] = None,
                  delete_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  delete_url: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_tls_verify: Optional[pulumi.Input[bool]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -308,14 +422,20 @@ class Purrl(pulumi.CustomResource):
             __props__ = PurrlArgs.__new__(PurrlArgs)
 
             __props__.__dict__["body"] = body
+            __props__.__dict__["ca_cert"] = ca_cert
+            __props__.__dict__["cert"] = cert
             __props__.__dict__["delete_body"] = delete_body
+            __props__.__dict__["delete_ca_cert"] = delete_ca_cert
+            __props__.__dict__["delete_cert"] = delete_cert
             __props__.__dict__["delete_headers"] = delete_headers
             __props__.__dict__["delete_insecure_skip_tls_verify"] = delete_insecure_skip_tls_verify
+            __props__.__dict__["delete_key"] = delete_key
             __props__.__dict__["delete_method"] = delete_method
             __props__.__dict__["delete_response_codes"] = delete_response_codes
             __props__.__dict__["delete_url"] = delete_url
             __props__.__dict__["headers"] = headers
             __props__.__dict__["insecure_skip_tls_verify"] = insecure_skip_tls_verify
+            __props__.__dict__["key"] = key
             if method is None and not opts.urn:
                 raise TypeError("Missing required property 'method'")
             __props__.__dict__["method"] = method
@@ -353,15 +473,21 @@ class Purrl(pulumi.CustomResource):
         __props__ = PurrlArgs.__new__(PurrlArgs)
 
         __props__.__dict__["body"] = None
+        __props__.__dict__["ca_cert"] = None
+        __props__.__dict__["cert"] = None
         __props__.__dict__["delete_body"] = None
+        __props__.__dict__["delete_ca_cert"] = None
+        __props__.__dict__["delete_cert"] = None
         __props__.__dict__["delete_headers"] = None
         __props__.__dict__["delete_insecure_skip_tls_verify"] = None
+        __props__.__dict__["delete_key"] = None
         __props__.__dict__["delete_method"] = None
         __props__.__dict__["delete_response"] = None
         __props__.__dict__["delete_response_codes"] = None
         __props__.__dict__["delete_url"] = None
         __props__.__dict__["headers"] = None
         __props__.__dict__["insecure_skip_tls_verify"] = None
+        __props__.__dict__["key"] = None
         __props__.__dict__["method"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["response"] = None
@@ -378,12 +504,44 @@ class Purrl(pulumi.CustomResource):
         return pulumi.get(self, "body")
 
     @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> pulumi.Output[Optional[str]]:
+        """
+        The CA certificate if server cert is not signed by a trusted CA.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @property
+    @pulumi.getter
+    def cert(self) -> pulumi.Output[Optional[str]]:
+        """
+        The client certificate to use for TLS verification.
+        """
+        return pulumi.get(self, "cert")
+
+    @property
     @pulumi.getter(name="deleteBody")
     def delete_body(self) -> pulumi.Output[Optional[str]]:
         """
         The body of the request.
         """
         return pulumi.get(self, "delete_body")
+
+    @property
+    @pulumi.getter(name="deleteCaCert")
+    def delete_ca_cert(self) -> pulumi.Output[Optional[str]]:
+        """
+        The CA certificate if server cert is not signed by a trusted CA.
+        """
+        return pulumi.get(self, "delete_ca_cert")
+
+    @property
+    @pulumi.getter(name="deleteCert")
+    def delete_cert(self) -> pulumi.Output[Optional[str]]:
+        """
+        The client certificate to use for TLS verification.
+        """
+        return pulumi.get(self, "delete_cert")
 
     @property
     @pulumi.getter(name="deleteHeaders")
@@ -400,6 +558,14 @@ class Purrl(pulumi.CustomResource):
         Skip TLS verification.
         """
         return pulumi.get(self, "delete_insecure_skip_tls_verify")
+
+    @property
+    @pulumi.getter(name="deleteKey")
+    def delete_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The client key to use for TLS verification.
+        """
+        return pulumi.get(self, "delete_key")
 
     @property
     @pulumi.getter(name="deleteMethod")
@@ -448,6 +614,14 @@ class Purrl(pulumi.CustomResource):
         Skip TLS verification.
         """
         return pulumi.get(self, "insecure_skip_tls_verify")
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The client key to use for TLS verification.
+        """
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter

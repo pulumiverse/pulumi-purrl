@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"crypto/tls"
+	"crypto/x509"
 	"errors"
 	"fmt"
 	p "github.com/pulumi/pulumi-go-provider"
@@ -35,7 +36,8 @@ func (c *Purrl) Create(ctx p.Context, name string, input PurrlInputs, preview bo
 	if preview {
 		return id, state, nil
 	}
-	endpoint, err := callAPIEndpoint(input.Method, input.Url, input.Body, input.ResponseCodes, input.Headers, input.InsecureSkipTLSVerify)
+	endpoint, err := callAPIEndpoint(input.Method, input.URL, input.Body, input.ResponseCodes, input.Headers,
+		input.InsecureSkipTLSVerify, input.CaCert, input.Cert, input.Key)
 	if err != nil {
 		return id, state, err
 	}
@@ -52,7 +54,8 @@ func boolPtr(b bool) *bool {
 	return &b
 }
 
-func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers *map[string]string, insecureSkipVerify *bool) (*string, error) {
+func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers *map[string]string,
+	insecureSkipVerify *bool, caCert, cert, key *string) (*string, error) {
 	if method == nil || url == nil || responseCode == nil {
 		return nil, errors.New("method, url and responseCode are required")
 	}
@@ -85,8 +88,29 @@ func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers 
 
 	client := &http.Client{
 		Transport: &http.Transport{
-			TLSClientConfig: &tls.Config{InsecureSkipVerify: *insecureSkipVerify},
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: *insecureSkipVerify,
+			},
 		},
+	}
+
+	if cert != nil && key != nil {
+		certificate, err := tls.X509KeyPair([]byte(*cert), []byte(*key))
+		if err != nil {
+			return nil, fmt.Errorf("error creating certificate: %v", err)
+		}
+		caCertPool, err := x509.SystemCertPool()
+		if err != nil {
+			return nil, fmt.Errorf("error creating SystemCertPool: %v", err)
+		}
+		if caCert == nil {
+			caCertPool = x509.NewCertPool()
+		} else {
+			caCertPool.AppendCertsFromPEM([]byte(*caCert))
+		}
+		caCertPool.AppendCertsFromPEM([]byte(*cert))
+		client.Transport.(*http.Transport).TLSClientConfig.RootCAs = caCertPool
+		client.Transport.(*http.Transport).TLSClientConfig.Certificates = []tls.Certificate{certificate}
 	}
 
 	resp, err := client.Do(request)
@@ -122,13 +146,15 @@ func responseCodeChecker(s []string, str string) bool {
 	return false
 }
 
-func (c *Purrl) Update(ctx p.Context, id string, olds PurrlOutputs, news PurrlInputs, preview bool) (PurrlOutputs, error) {
+func (c *Purrl) Update(ctx p.Context, id string, olds PurrlOutputs,
+	news PurrlInputs, preview bool) (PurrlOutputs, error) {
 	state := PurrlOutputs{PurrlInputs: news}
 	// If in preview, don't run the command.
 	if preview {
 		return state, nil
 	}
-	endpoint, err := callAPIEndpoint(news.Method, news.Url, news.Body, news.ResponseCodes, news.Headers, news.InsecureSkipTLSVerify)
+	endpoint, err := callAPIEndpoint(news.Method, news.URL, news.Body, news.ResponseCodes, news.Headers,
+		news.InsecureSkipTLSVerify, news.CaCert, news.Cert, news.Key)
 	if err != nil {
 		return state, err
 	}
@@ -139,10 +165,12 @@ func (c *Purrl) Update(ctx p.Context, id string, olds PurrlOutputs, news PurrlIn
 func (c *Purrl) Delete(ctx p.Context, id string, props PurrlOutputs) error {
 
 	// if delete props are not set, we do nothing
-	if props.DeleteMethod == nil || props.DeleteUrl == nil || props.DeleteResponseCodes == nil {
+	if props.DeleteMethod == nil || props.DeleteURL == nil || props.DeleteResponseCodes == nil {
 		return nil
 	}
-	deleteResponse, err := callAPIEndpoint(props.DeleteMethod, props.DeleteUrl, props.DeleteBody, props.DeleteResponseCodes, props.DeleteHeaders, props.DeleteInsecureSkipTLSVerify)
+	deleteResponse, err := callAPIEndpoint(props.DeleteMethod, props.DeleteURL, props.DeleteBody,
+		props.DeleteResponseCodes, props.DeleteHeaders, props.DeleteInsecureSkipTLSVerify,
+		props.DeleteCaCert, props.DeleteCert, props.DeleteKey)
 	if err != nil {
 		return err
 	}
@@ -153,33 +181,45 @@ func (c *Purrl) Delete(ctx p.Context, id string, props PurrlOutputs) error {
 
 func (c *Purrl) WireDependencies(f infer.FieldSelector, args *PurrlInputs, state *PurrlOutputs) {
 	nameInput := f.InputField(&args.Name)
-	urlInput := f.InputField(&args.Url)
+	urlInput := f.InputField(&args.URL)
 	methodInput := f.InputField(&args.Method)
 	bodyInput := f.InputField(&args.Body)
 	headersInput := f.InputField(&args.Headers)
 	responseCodeInput := f.InputField(&args.ResponseCodes)
 	insecureSkipTLSVerifyInput := f.InputField(&args.InsecureSkipTLSVerify)
+	caCertInput := f.InputField(&args.CaCert)
+	certInput := f.InputField(&args.Cert)
+	keyInput := f.InputField(&args.Key)
 
-	deleteUrlInput := f.InputField(&args.DeleteUrl)
+	deleteURLInput := f.InputField(&args.DeleteURL)
 	deleteMethodInput := f.InputField(&args.DeleteMethod)
 	deleteBodyInput := f.InputField(&args.DeleteBody)
 	deleteHeadersInput := f.InputField(&args.DeleteHeaders)
 	deleteResponseCodeInput := f.InputField(&args.DeleteResponseCodes)
 	deleteInsecureSkipTLSVerifyInput := f.InputField(&args.DeleteInsecureSkipTLSVerify)
+	deleteCaCertInput := f.InputField(&args.DeleteCaCert)
+	deleteCertInput := f.InputField(&args.DeleteCert)
+	deleteKeyInput := f.InputField(&args.DeleteKey)
 
 	f.OutputField(&state.Name).DependsOn(nameInput)
-	f.OutputField(&state.Url).DependsOn(urlInput)
+	f.OutputField(&state.URL).DependsOn(urlInput)
 	f.OutputField(&state.Method).DependsOn(methodInput)
 	f.OutputField(&state.Body).DependsOn(bodyInput)
 	f.OutputField(&state.Headers).DependsOn(headersInput)
 	f.OutputField(&state.ResponseCodes).DependsOn(responseCodeInput)
 	f.OutputField(&state.InsecureSkipTLSVerify).DependsOn(insecureSkipTLSVerifyInput)
-	f.OutputField(&state.DeleteUrl).DependsOn(deleteUrlInput)
+	f.OutputField(&state.CaCert).DependsOn(caCertInput)
+	f.OutputField(&state.Cert).DependsOn(certInput)
+	f.OutputField(&state.Key).DependsOn(keyInput)
+	f.OutputField(&state.DeleteURL).DependsOn(deleteURLInput)
 	f.OutputField(&state.DeleteMethod).DependsOn(deleteMethodInput)
 	f.OutputField(&state.DeleteBody).DependsOn(deleteBodyInput)
 	f.OutputField(&state.DeleteHeaders).DependsOn(deleteHeadersInput)
 	f.OutputField(&state.DeleteResponseCodes).DependsOn(deleteResponseCodeInput)
 	f.OutputField(&state.DeleteInsecureSkipTLSVerify).DependsOn(deleteInsecureSkipTLSVerifyInput)
+	f.OutputField(&state.DeleteCaCert).DependsOn(deleteCaCertInput)
+	f.OutputField(&state.DeleteCert).DependsOn(deleteCertInput)
+	f.OutputField(&state.DeleteKey).DependsOn(deleteKeyInput)
 }
 
 var _ = (infer.Annotated)((*Purrl)(nil))
@@ -193,35 +233,47 @@ type PurrlInputs struct {
 	// pulumi:"optional" specifies that a field is optional. This must be a pointer.
 	// provider:"replaceOnChanges" specifies that the resource will be replaced if the field changes.
 	Name                  *string            `pulumi:"name"`
-	Url                   *string            `pulumi:"url"`
+	URL                   *string            `pulumi:"url"`
 	Method                *string            `pulumi:"method"`
 	Body                  *string            `pulumi:"body,optional"`
 	Headers               *map[string]string `pulumi:"headers,optional"`
 	ResponseCodes         *[]string          `pulumi:"responseCodes"`
 	InsecureSkipTLSVerify *bool              `pulumi:"insecureSkipTLSVerify,optional"`
+	CaCert                *string            `pulumi:"caCert,optional"`
+	Cert                  *string            `pulumi:"cert,optional"`
+	Key                   *string            `pulumi:"key,optional"`
 
-	DeleteUrl                   *string            `pulumi:"deleteUrl,optional"`
+	DeleteURL                   *string            `pulumi:"deleteUrl,optional"`
 	DeleteMethod                *string            `pulumi:"deleteMethod,optional"`
 	DeleteBody                  *string            `pulumi:"deleteBody,optional"`
 	DeleteHeaders               *map[string]string `pulumi:"deleteHeaders,optional"`
 	DeleteResponseCodes         *[]string          `pulumi:"deleteResponseCodes,optional"`
 	DeleteInsecureSkipTLSVerify *bool              `pulumi:"deleteInsecureSkipTLSVerify,optional"`
+	DeleteCaCert                *string            `pulumi:"deleteCaCert,optional"`
+	DeleteCert                  *string            `pulumi:"deleteCert,optional"`
+	DeleteKey                   *string            `pulumi:"deleteKey,optional"`
 }
 
 func (c *PurrlInputs) Annotate(a infer.Annotator) {
 	a.Describe(&c.Name, "The name for this API call.")
-	a.Describe(&c.Url, "The API endpoint to call.")
+	a.Describe(&c.URL, "The API endpoint to call.")
 	a.Describe(&c.Method, "The HTTP method to use.")
 	a.Describe(&c.Body, "The body of the request.")
 	a.Describe(&c.Headers, "The headers to send with the request.")
 	a.Describe(&c.ResponseCodes, "The expected response code.")
 	a.Describe(&c.InsecureSkipTLSVerify, "Skip TLS verification.")
-	a.Describe(&c.DeleteUrl, "The API endpoint to call.")
+	a.Describe(&c.CaCert, "The CA certificate if server cert is not signed by a trusted CA.")
+	a.Describe(&c.Cert, "The client certificate to use for TLS verification.")
+	a.Describe(&c.Key, "The client key to use for TLS verification.")
+	a.Describe(&c.DeleteURL, "The API endpoint to call.")
 	a.Describe(&c.DeleteMethod, "The HTTP method to use.")
 	a.Describe(&c.DeleteBody, "The body of the request.")
 	a.Describe(&c.DeleteHeaders, "The headers to send with the request.")
 	a.Describe(&c.DeleteResponseCodes, "The expected response code.")
 	a.Describe(&c.DeleteInsecureSkipTLSVerify, "Skip TLS verification.")
+	a.Describe(&c.DeleteCaCert, "The CA certificate if server cert is not signed by a trusted CA.")
+	a.Describe(&c.DeleteCert, "The client certificate to use for TLS verification.")
+	a.Describe(&c.DeleteKey, "The client key to use for TLS verification.")
 }
 
 type PurrlOutputs struct {

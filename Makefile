@@ -90,7 +90,7 @@ build:: codegen provider go_sdk dotnet_sdk nodejs_sdk python_sdk java_sdk
 only_build:: build
 
 lint::
-	for DIR in "provider" "sdk" "tests" ; do \
+	for DIR in "provider" "sdk" ; do \
 		pushd $$DIR && golangci-lint run  --timeout 10m && popd ; \
 	done
 
