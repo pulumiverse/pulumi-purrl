@@ -9,6 +9,7 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import com.pulumiverse.purrl.PurrlArgs;
 import com.pulumiverse.purrl.Utilities;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,20 @@ public class Purrl extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Map<String,String>>> deleteHeaders() {
         return Codegen.optional(this.deleteHeaders);
+    }
+    /**
+     * Skip TLS verification.
+     * 
+     */
+    @Export(name="deleteInsecureSkipTLSVerify", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> deleteInsecureSkipTLSVerify;
+
+    /**
+     * @return Skip TLS verification.
+     * 
+     */
+    public Output<Optional<Boolean>> deleteInsecureSkipTLSVerify() {
+        return Codegen.optional(this.deleteInsecureSkipTLSVerify);
     }
     /**
      * The HTTP method to use.
@@ -132,6 +147,20 @@ public class Purrl extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Map<String,String>>> headers() {
         return Codegen.optional(this.headers);
+    }
+    /**
+     * Skip TLS verification.
+     * 
+     */
+    @Export(name="insecureSkipTLSVerify", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> insecureSkipTLSVerify;
+
+    /**
+     * @return Skip TLS verification.
+     * 
+     */
+    public Output<Optional<Boolean>> insecureSkipTLSVerify() {
+        return Codegen.optional(this.insecureSkipTLSVerify);
     }
     /**
      * The HTTP method to use.

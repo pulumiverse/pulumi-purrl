@@ -68,6 +68,10 @@
                     "description": "The headers to send with the request.",
                     "type": "object"
                 },
+                "deleteInsecureSkipTLSVerify": {
+                    "description": "Skip TLS verification.",
+                    "type": "boolean"
+                },
                 "deleteMethod": {
                     "description": "The HTTP method to use.",
                     "type": "string"
@@ -89,6 +93,10 @@
                     },
                     "description": "The headers to send with the request.",
                     "type": "object"
+                },
+                "insecureSkipTLSVerify": {
+                    "description": "Skip TLS verification.",
+                    "type": "boolean"
                 },
                 "method": {
                     "description": "The HTTP method to use.",
@@ -126,6 +134,10 @@
                     "description": "The headers to send with the request.",
                     "type": "object"
                 },
+                "deleteInsecureSkipTLSVerify": {
+                    "description": "Skip TLS verification.",
+                    "type": "boolean"
+                },
                 "deleteMethod": {
                     "description": "The HTTP method to use.",
                     "type": "string"
@@ -151,6 +163,10 @@
                     },
                     "description": "The headers to send with the request.",
                     "type": "object"
+                },
+                "insecureSkipTLSVerify": {
+                    "description": "Skip TLS verification.",
+                    "type": "boolean"
                 },
                 "method": {
                     "description": "The HTTP method to use.",

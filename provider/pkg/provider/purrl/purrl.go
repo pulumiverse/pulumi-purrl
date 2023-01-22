@@ -3,6 +3,7 @@ package purrl
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
 	"errors"
 	"fmt"
 	p "github.com/pulumi/pulumi-go-provider"
@@ -17,14 +18,6 @@ type Purrl struct{}
 
 type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
-}
-
-var (
-	Client HTTPClient
-)
-
-func init() {
-	Client = &http.Client{}
 }
 
 var _ = (infer.CustomResource[PurrlInputs, PurrlOutputs])((*Purrl)(nil))
@@ -42,7 +35,7 @@ func (c *Purrl) Create(ctx p.Context, name string, input PurrlInputs, preview bo
 	if preview {
 		return id, state, nil
 	}
-	endpoint, err := callAPIEndpoint(input.Method, input.Url, input.Body, input.ResponseCodes, input.Headers)
+	endpoint, err := callAPIEndpoint(input.Method, input.Url, input.Body, input.ResponseCodes, input.Headers, input.InsecureSkipTLSVerify)
 	if err != nil {
 		return id, state, err
 	}
@@ -55,9 +48,17 @@ func strPtr(s string) *string {
 	return &s
 }
 
-func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers *map[string]string) (*string, error) {
+func boolPtr(b bool) *bool {
+	return &b
+}
+
+func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers *map[string]string, insecureSkipVerify *bool) (*string, error) {
 	if method == nil || url == nil || responseCode == nil {
 		return nil, errors.New("method, url and responseCode are required")
+	}
+
+	if insecureSkipVerify == nil {
+		insecureSkipVerify = boolPtr(false)
 	}
 
 	if body == nil {
@@ -82,7 +83,13 @@ func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers 
 		}
 	}
 
-	resp, err := Client.Do(request)
+	client := &http.Client{
+		Transport: &http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: *insecureSkipVerify},
+		},
+	}
+
+	resp, err := client.Do(request)
 	if err != nil {
 		return nil, fmt.Errorf("error calling API endpoint: %v", err)
 	}
@@ -121,7 +128,7 @@ func (c *Purrl) Update(ctx p.Context, id string, olds PurrlOutputs, news PurrlIn
 	if preview {
 		return state, nil
 	}
-	endpoint, err := callAPIEndpoint(news.Method, news.Url, news.Body, news.ResponseCodes, news.Headers)
+	endpoint, err := callAPIEndpoint(news.Method, news.Url, news.Body, news.ResponseCodes, news.Headers, news.InsecureSkipTLSVerify)
 	if err != nil {
 		return state, err
 	}
@@ -135,7 +142,7 @@ func (c *Purrl) Delete(ctx p.Context, id string, props PurrlOutputs) error {
 	if props.DeleteMethod == nil || props.DeleteUrl == nil || props.DeleteResponseCodes == nil {
 		return nil
 	}
-	deleteResponse, err := callAPIEndpoint(props.DeleteMethod, props.DeleteUrl, props.DeleteBody, props.DeleteResponseCodes, props.DeleteHeaders)
+	deleteResponse, err := callAPIEndpoint(props.DeleteMethod, props.DeleteUrl, props.DeleteBody, props.DeleteResponseCodes, props.DeleteHeaders, props.DeleteInsecureSkipTLSVerify)
 	if err != nil {
 		return err
 	}
@@ -151,12 +158,14 @@ func (c *Purrl) WireDependencies(f infer.FieldSelector, args *PurrlInputs, state
 	bodyInput := f.InputField(&args.Body)
 	headersInput := f.InputField(&args.Headers)
 	responseCodeInput := f.InputField(&args.ResponseCodes)
+	insecureSkipTLSVerifyInput := f.InputField(&args.InsecureSkipTLSVerify)
 
 	deleteUrlInput := f.InputField(&args.DeleteUrl)
 	deleteMethodInput := f.InputField(&args.DeleteMethod)
 	deleteBodyInput := f.InputField(&args.DeleteBody)
 	deleteHeadersInput := f.InputField(&args.DeleteHeaders)
 	deleteResponseCodeInput := f.InputField(&args.DeleteResponseCodes)
+	deleteInsecureSkipTLSVerifyInput := f.InputField(&args.DeleteInsecureSkipTLSVerify)
 
 	f.OutputField(&state.Name).DependsOn(nameInput)
 	f.OutputField(&state.Url).DependsOn(urlInput)
@@ -164,11 +173,13 @@ func (c *Purrl) WireDependencies(f infer.FieldSelector, args *PurrlInputs, state
 	f.OutputField(&state.Body).DependsOn(bodyInput)
 	f.OutputField(&state.Headers).DependsOn(headersInput)
 	f.OutputField(&state.ResponseCodes).DependsOn(responseCodeInput)
+	f.OutputField(&state.InsecureSkipTLSVerify).DependsOn(insecureSkipTLSVerifyInput)
 	f.OutputField(&state.DeleteUrl).DependsOn(deleteUrlInput)
 	f.OutputField(&state.DeleteMethod).DependsOn(deleteMethodInput)
 	f.OutputField(&state.DeleteBody).DependsOn(deleteBodyInput)
 	f.OutputField(&state.DeleteHeaders).DependsOn(deleteHeadersInput)
 	f.OutputField(&state.DeleteResponseCodes).DependsOn(deleteResponseCodeInput)
+	f.OutputField(&state.DeleteInsecureSkipTLSVerify).DependsOn(deleteInsecureSkipTLSVerifyInput)
 }
 
 var _ = (infer.Annotated)((*Purrl)(nil))
@@ -181,18 +192,20 @@ type PurrlInputs struct {
 	// The field tags are used to provide metadata on the schema representation.
 	// pulumi:"optional" specifies that a field is optional. This must be a pointer.
 	// provider:"replaceOnChanges" specifies that the resource will be replaced if the field changes.
-	Name          *string            `pulumi:"name"`
-	Url           *string            `pulumi:"url"`
-	Method        *string            `pulumi:"method"`
-	Body          *string            `pulumi:"body,optional"`
-	Headers       *map[string]string `pulumi:"headers,optional"`
-	ResponseCodes *[]string          `pulumi:"responseCodes"`
+	Name                  *string            `pulumi:"name"`
+	Url                   *string            `pulumi:"url"`
+	Method                *string            `pulumi:"method"`
+	Body                  *string            `pulumi:"body,optional"`
+	Headers               *map[string]string `pulumi:"headers,optional"`
+	ResponseCodes         *[]string          `pulumi:"responseCodes"`
+	InsecureSkipTLSVerify *bool              `pulumi:"insecureSkipTLSVerify,optional"`
 
-	DeleteUrl           *string            `pulumi:"deleteUrl,optional"`
-	DeleteMethod        *string            `pulumi:"deleteMethod,optional"`
-	DeleteBody          *string            `pulumi:"deleteBody,optional"`
-	DeleteHeaders       *map[string]string `pulumi:"deleteHeaders,optional"`
-	DeleteResponseCodes *[]string          `pulumi:"deleteResponseCodes,optional"`
+	DeleteUrl                   *string            `pulumi:"deleteUrl,optional"`
+	DeleteMethod                *string            `pulumi:"deleteMethod,optional"`
+	DeleteBody                  *string            `pulumi:"deleteBody,optional"`
+	DeleteHeaders               *map[string]string `pulumi:"deleteHeaders,optional"`
+	DeleteResponseCodes         *[]string          `pulumi:"deleteResponseCodes,optional"`
+	DeleteInsecureSkipTLSVerify *bool              `pulumi:"deleteInsecureSkipTLSVerify,optional"`
 }
 
 func (c *PurrlInputs) Annotate(a infer.Annotator) {
@@ -202,11 +215,13 @@ func (c *PurrlInputs) Annotate(a infer.Annotator) {
 	a.Describe(&c.Body, "The body of the request.")
 	a.Describe(&c.Headers, "The headers to send with the request.")
 	a.Describe(&c.ResponseCodes, "The expected response code.")
+	a.Describe(&c.InsecureSkipTLSVerify, "Skip TLS verification.")
 	a.Describe(&c.DeleteUrl, "The API endpoint to call.")
 	a.Describe(&c.DeleteMethod, "The HTTP method to use.")
 	a.Describe(&c.DeleteBody, "The body of the request.")
 	a.Describe(&c.DeleteHeaders, "The headers to send with the request.")
 	a.Describe(&c.DeleteResponseCodes, "The expected response code.")
+	a.Describe(&c.DeleteInsecureSkipTLSVerify, "Skip TLS verification.")
 }
 
 type PurrlOutputs struct {

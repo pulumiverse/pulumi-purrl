@@ -35,6 +35,12 @@ namespace Pulumiverse.Purrl
         public Output<ImmutableDictionary<string, string>?> DeleteHeaders { get; private set; } = null!;
 
         /// <summary>
+        /// Skip TLS verification.
+        /// </summary>
+        [Output("deleteInsecureSkipTLSVerify")]
+        public Output<bool?> DeleteInsecureSkipTLSVerify { get; private set; } = null!;
+
+        /// <summary>
         /// The HTTP method to use.
         /// </summary>
         [Output("deleteMethod")]
@@ -63,6 +69,12 @@ namespace Pulumiverse.Purrl
         /// </summary>
         [Output("headers")]
         public Output<ImmutableDictionary<string, string>?> Headers { get; private set; } = null!;
+
+        /// <summary>
+        /// Skip TLS verification.
+        /// </summary>
+        [Output("insecureSkipTLSVerify")]
+        public Output<bool?> InsecureSkipTLSVerify { get; private set; } = null!;
 
         /// <summary>
         /// The HTTP method to use.
@@ -165,6 +177,12 @@ namespace Pulumiverse.Purrl
         }
 
         /// <summary>
+        /// Skip TLS verification.
+        /// </summary>
+        [Input("deleteInsecureSkipTLSVerify")]
+        public Input<bool>? DeleteInsecureSkipTLSVerify { get; set; }
+
+        /// <summary>
         /// The HTTP method to use.
         /// </summary>
         [Input("deleteMethod")]
@@ -199,6 +217,12 @@ namespace Pulumiverse.Purrl
             get => _headers ?? (_headers = new InputMap<string>());
             set => _headers = value;
         }
+
+        /// <summary>
+        /// Skip TLS verification.
+        /// </summary>
+        [Input("insecureSkipTLSVerify")]
+        public Input<bool>? InsecureSkipTLSVerify { get; set; }
 
         /// <summary>
         /// The HTTP method to use.

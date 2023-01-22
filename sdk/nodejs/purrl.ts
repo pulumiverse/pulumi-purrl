@@ -47,6 +47,10 @@ export class Purrl extends pulumi.CustomResource {
      */
     public readonly deleteHeaders!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * Skip TLS verification.
+     */
+    public readonly deleteInsecureSkipTLSVerify!: pulumi.Output<boolean | undefined>;
+    /**
      * The HTTP method to use.
      */
     public readonly deleteMethod!: pulumi.Output<string | undefined>;
@@ -66,6 +70,10 @@ export class Purrl extends pulumi.CustomResource {
      * The headers to send with the request.
      */
     public readonly headers!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Skip TLS verification.
+     */
+    public readonly insecureSkipTLSVerify!: pulumi.Output<boolean | undefined>;
     /**
      * The HTTP method to use.
      */
@@ -113,10 +121,12 @@ export class Purrl extends pulumi.CustomResource {
             resourceInputs["body"] = args ? args.body : undefined;
             resourceInputs["deleteBody"] = args ? args.deleteBody : undefined;
             resourceInputs["deleteHeaders"] = args ? args.deleteHeaders : undefined;
+            resourceInputs["deleteInsecureSkipTLSVerify"] = args ? args.deleteInsecureSkipTLSVerify : undefined;
             resourceInputs["deleteMethod"] = args ? args.deleteMethod : undefined;
             resourceInputs["deleteResponseCodes"] = args ? args.deleteResponseCodes : undefined;
             resourceInputs["deleteUrl"] = args ? args.deleteUrl : undefined;
             resourceInputs["headers"] = args ? args.headers : undefined;
+            resourceInputs["insecureSkipTLSVerify"] = args ? args.insecureSkipTLSVerify : undefined;
             resourceInputs["method"] = args ? args.method : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["responseCodes"] = args ? args.responseCodes : undefined;
@@ -127,11 +137,13 @@ export class Purrl extends pulumi.CustomResource {
             resourceInputs["body"] = undefined /*out*/;
             resourceInputs["deleteBody"] = undefined /*out*/;
             resourceInputs["deleteHeaders"] = undefined /*out*/;
+            resourceInputs["deleteInsecureSkipTLSVerify"] = undefined /*out*/;
             resourceInputs["deleteMethod"] = undefined /*out*/;
             resourceInputs["deleteResponse"] = undefined /*out*/;
             resourceInputs["deleteResponseCodes"] = undefined /*out*/;
             resourceInputs["deleteUrl"] = undefined /*out*/;
             resourceInputs["headers"] = undefined /*out*/;
+            resourceInputs["insecureSkipTLSVerify"] = undefined /*out*/;
             resourceInputs["method"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["response"] = undefined /*out*/;
@@ -160,6 +172,10 @@ export interface PurrlArgs {
      */
     deleteHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * Skip TLS verification.
+     */
+    deleteInsecureSkipTLSVerify?: pulumi.Input<boolean>;
+    /**
      * The HTTP method to use.
      */
     deleteMethod?: pulumi.Input<string>;
@@ -175,6 +191,10 @@ export interface PurrlArgs {
      * The headers to send with the request.
      */
     headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Skip TLS verification.
+     */
+    insecureSkipTLSVerify?: pulumi.Input<boolean>;
     /**
      * The HTTP method to use.
      */
