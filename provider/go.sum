@@ -125,8 +125,8 @@ github.com/pulumi/pulumi-go-provider v0.9.0 h1:fIQ8BVOTiZBYCSyqv7zvmhzKeCEDc9A/h
 github.com/pulumi/pulumi-go-provider v0.9.0/go.mod h1:HuHuMMJW+fHtoUz44rBKdT1WYueeQa5AbPHY/dyMp2c=
 github.com/pulumi/pulumi-go-provider/integration v0.9.0 h1:4wx5yJVmv3dhvqttC1IOmppwX/kalR9BWRFA2xug3zo=
 github.com/pulumi/pulumi-go-provider/integration v0.9.0/go.mod h1:hfTfn6l+su3ap1EYFbACHPU3LzrPoEjPsEtcy1T/cIs=
-github.com/pulumi/pulumi/pkg/v3 v3.52.1 h1:avY0TtI2Cl8sGyX+tYdK2kgQEH7++bwN0Lj0LzvUVm8=
-github.com/pulumi/pulumi/pkg/v3 v3.52.1/go.mod h1:7T331B5jCIBfzlWPIG32GXILBdGp2JdJiaYLaImLtLI=
+github.com/pulumi/pulumi/pkg/v3 v3.53.1 h1:NSgzjci0ykEoKC2BHmp/brP7/V8ARafl8ovr76B9Jak=
+github.com/pulumi/pulumi/pkg/v3 v3.53.1/go.mod h1:XqciW5mPO8RxBEbN2/My9XjO829UQ2cHuhVLfoKM/yE=
 github.com/pulumi/pulumi/sdk/v3 v3.53.1 h1:fTYqe0fQiGshlOuHwpjOqQOb2SW3CSqXteeGcAuO+Bk=
 github.com/pulumi/pulumi/sdk/v3 v3.53.1/go.mod h1:IYcBrkAwKEGRVq7R1ne3XJKB5bcux5eL3M/zqco7d6Y=
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=
