@@ -36,11 +36,12 @@ func (c *Purrl) Create(ctx p.Context, name string, input PurrlInputs, preview bo
 	if preview {
 		return id, state, nil
 	}
-	endpoint, err := callAPIEndpoint(input.Method, input.URL, input.Body, input.ResponseCodes, input.Headers,
+	code, endpoint, err := callAPIEndpoint(input.Method, input.URL, input.Body, input.ResponseCodes, input.Headers,
 		input.InsecureSkipTLSVerify, input.CaCert, input.Cert, input.Key)
 	if err != nil {
 		return id, state, err
 	}
+	state.ResponseCode = code
 	state.Response = endpoint
 
 	return id, state, err
@@ -54,10 +55,14 @@ func boolPtr(b bool) *bool {
 	return &b
 }
 
+func intPtr(i int) *int {
+	return &i
+}
+
 func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers *map[string]string,
-	insecureSkipVerify *bool, caCert, cert, key *string) (*string, error) {
+	insecureSkipVerify *bool, caCert, cert, key *string) (*int, *string, error) {
 	if method == nil || url == nil || responseCode == nil {
-		return nil, errors.New("method, url and responseCode are required")
+		return nil, nil, errors.New("method, url and responseCode are required")
 	}
 
 	if insecureSkipVerify == nil {
@@ -70,7 +75,7 @@ func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers 
 
 	request, err := http.NewRequestWithContext(context.TODO(), *method, *url, bytes.NewBuffer([]byte(*body)))
 	if err != nil {
-		return nil, fmt.Errorf("error creating request: %v", err)
+		return nil, nil, fmt.Errorf("error creating request: %v", err)
 	}
 
 	if headers != nil {
@@ -97,11 +102,11 @@ func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers 
 	if cert != nil && key != nil {
 		certificate, err := tls.X509KeyPair([]byte(*cert), []byte(*key))
 		if err != nil {
-			return nil, fmt.Errorf("error creating certificate: %v", err)
+			return nil, nil, fmt.Errorf("error creating certificate: %v", err)
 		}
 		caCertPool, err := x509.SystemCertPool()
 		if err != nil {
-			return nil, fmt.Errorf("error creating SystemCertPool: %v", err)
+			return nil, nil, fmt.Errorf("error creating SystemCertPool: %v", err)
 		}
 		if caCert == nil {
 			caCertPool = x509.NewCertPool()
@@ -115,12 +120,12 @@ func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers 
 
 	resp, err := client.Do(request)
 	if err != nil {
-		return nil, fmt.Errorf("error calling API endpoint: %v", err)
+		return intPtr(resp.StatusCode), nil, fmt.Errorf("error calling API endpoint: %v", err)
 	}
 	defer resp.Body.Close()
 	respBody, readErr := io.ReadAll(resp.Body)
 	if readErr != nil {
-		return nil, fmt.Errorf("error reading response body: %v", readErr)
+		return intPtr(resp.StatusCode), nil, fmt.Errorf("error reading response body: %v", readErr)
 	}
 
 	code := fmt.Sprintf("%v", resp.StatusCode)
@@ -131,10 +136,10 @@ func callAPIEndpoint(method, url, body *string, responseCode *[]string, headers 
 	}
 
 	if !responseCodeChecker(stringConversionList, code) {
-		return nil, errors.New("response code not in list of expected response codes")
+		return intPtr(resp.StatusCode), nil, errors.New("response code not in list of expected response codes")
 	}
 
-	return strPtr(string(respBody)), nil
+	return intPtr(resp.StatusCode), strPtr(string(respBody)), nil
 }
 
 func responseCodeChecker(s []string, str string) bool {
@@ -153,11 +158,12 @@ func (c *Purrl) Update(ctx p.Context, id string, olds PurrlOutputs,
 	if preview {
 		return state, nil
 	}
-	endpoint, err := callAPIEndpoint(news.Method, news.URL, news.Body, news.ResponseCodes, news.Headers,
+	code, endpoint, err := callAPIEndpoint(news.Method, news.URL, news.Body, news.ResponseCodes, news.Headers,
 		news.InsecureSkipTLSVerify, news.CaCert, news.Cert, news.Key)
 	if err != nil {
 		return state, err
 	}
+	state.ResponseCode = code
 	state.Response = endpoint
 	return state, nil
 }
@@ -168,13 +174,13 @@ func (c *Purrl) Delete(ctx p.Context, id string, props PurrlOutputs) error {
 	if props.DeleteMethod == nil || props.DeleteURL == nil || props.DeleteResponseCodes == nil {
 		return nil
 	}
-	deleteResponse, err := callAPIEndpoint(props.DeleteMethod, props.DeleteURL, props.DeleteBody,
+	code, deleteResponse, err := callAPIEndpoint(props.DeleteMethod, props.DeleteURL, props.DeleteBody,
 		props.DeleteResponseCodes, props.DeleteHeaders, props.DeleteInsecureSkipTLSVerify,
 		props.DeleteCaCert, props.DeleteCert, props.DeleteKey)
 	if err != nil {
 		return err
 	}
-	ctx.Logf(diag.Debug, "delete response: %s", *deleteResponse)
+	ctx.Logf(diag.Debug, "delete response: %s %s", *code, *deleteResponse)
 
 	return nil
 }
@@ -279,6 +285,7 @@ func (c *PurrlInputs) Annotate(a infer.Annotator) {
 type PurrlOutputs struct {
 	PurrlInputs
 	Response       *string `pulumi:"response"`
+	ResponseCode   *int    `pulumi:"responseCode"`
 	DeleteResponse *string `pulumi:"deleteResponse,optional"`
 }
 

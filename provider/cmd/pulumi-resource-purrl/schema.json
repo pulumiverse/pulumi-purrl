@@ -228,6 +228,9 @@
                     "description": "The response from the API call.",
                     "type": "string"
                 },
+                "responseCode": {
+                    "type": "integer"
+                },
                 "responseCodes": {
                     "description": "The expected response code.",
                     "items": {
@@ -245,7 +248,8 @@
                 "url",
                 "method",
                 "responseCodes",
-                "response"
+                "response",
+                "responseCode"
             ],
             "requiredInputs": [
                 "name",

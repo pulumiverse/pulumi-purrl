@@ -450,6 +450,7 @@ class Purrl(pulumi.CustomResource):
             __props__.__dict__["url"] = url
             __props__.__dict__["delete_response"] = None
             __props__.__dict__["response"] = None
+            __props__.__dict__["response_code"] = None
         super(Purrl, __self__).__init__(
             'purrl:index:Purrl',
             resource_name,
@@ -491,6 +492,7 @@ class Purrl(pulumi.CustomResource):
         __props__.__dict__["method"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["response"] = None
+        __props__.__dict__["response_code"] = None
         __props__.__dict__["response_codes"] = None
         __props__.__dict__["url"] = None
         return Purrl(resource_name, opts=opts, __props__=__props__)
@@ -646,6 +648,11 @@ class Purrl(pulumi.CustomResource):
         The response from the API call.
         """
         return pulumi.get(self, "response")
+
+    @property
+    @pulumi.getter(name="responseCode")
+    def response_code(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "response_code")
 
     @property
     @pulumi.getter(name="responseCodes")
