@@ -169,14 +169,14 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The expected response code.
+     * The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
      * 
      */
     @Import(name="deleteResponseCodes")
     private @Nullable Output<List<String>> deleteResponseCodes;
 
     /**
-     * @return The expected response code.
+     * @return The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
      * 
      */
     public Optional<Output<List<String>>> deleteResponseCodes() {
@@ -196,6 +196,36 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> deleteUrl() {
         return Optional.ofNullable(this.deleteUrl);
+    }
+
+    /**
+     * The expected response code(s) for deletion.
+     * 
+     */
+    @Import(name="expectedDeleteResponseCodes")
+    private @Nullable Output<List<String>> expectedDeleteResponseCodes;
+
+    /**
+     * @return The expected response code(s) for deletion.
+     * 
+     */
+    public Optional<Output<List<String>>> expectedDeleteResponseCodes() {
+        return Optional.ofNullable(this.expectedDeleteResponseCodes);
+    }
+
+    /**
+     * The expected response code(s).
+     * 
+     */
+    @Import(name="expectedResponseCodes")
+    private @Nullable Output<List<String>> expectedResponseCodes;
+
+    /**
+     * @return The expected response code(s).
+     * 
+     */
+    public Optional<Output<List<String>>> expectedResponseCodes() {
+        return Optional.ofNullable(this.expectedResponseCodes);
     }
 
     /**
@@ -274,18 +304,18 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The expected response code.
+     * The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
      * 
      */
-    @Import(name="responseCodes", required=true)
-    private Output<List<String>> responseCodes;
+    @Import(name="responseCodes")
+    private @Nullable Output<List<String>> responseCodes;
 
     /**
-     * @return The expected response code.
+     * @return The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
      * 
      */
-    public Output<List<String>> responseCodes() {
-        return this.responseCodes;
+    public Optional<Output<List<String>>> responseCodes() {
+        return Optional.ofNullable(this.responseCodes);
     }
 
     /**
@@ -318,6 +348,8 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
         this.deleteMethod = $.deleteMethod;
         this.deleteResponseCodes = $.deleteResponseCodes;
         this.deleteUrl = $.deleteUrl;
+        this.expectedDeleteResponseCodes = $.expectedDeleteResponseCodes;
+        this.expectedResponseCodes = $.expectedResponseCodes;
         this.headers = $.headers;
         this.insecureSkipTLSVerify = $.insecureSkipTLSVerify;
         this.key = $.key;
@@ -556,7 +588,7 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deleteResponseCodes The expected response code.
+         * @param deleteResponseCodes The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
          * 
          * @return builder
          * 
@@ -567,7 +599,7 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deleteResponseCodes The expected response code.
+         * @param deleteResponseCodes The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
          * 
          * @return builder
          * 
@@ -577,7 +609,7 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deleteResponseCodes The expected response code.
+         * @param deleteResponseCodes The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
          * 
          * @return builder
          * 
@@ -605,6 +637,68 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder deleteUrl(String deleteUrl) {
             return deleteUrl(Output.of(deleteUrl));
+        }
+
+        /**
+         * @param expectedDeleteResponseCodes The expected response code(s) for deletion.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expectedDeleteResponseCodes(@Nullable Output<List<String>> expectedDeleteResponseCodes) {
+            $.expectedDeleteResponseCodes = expectedDeleteResponseCodes;
+            return this;
+        }
+
+        /**
+         * @param expectedDeleteResponseCodes The expected response code(s) for deletion.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expectedDeleteResponseCodes(List<String> expectedDeleteResponseCodes) {
+            return expectedDeleteResponseCodes(Output.of(expectedDeleteResponseCodes));
+        }
+
+        /**
+         * @param expectedDeleteResponseCodes The expected response code(s) for deletion.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expectedDeleteResponseCodes(String... expectedDeleteResponseCodes) {
+            return expectedDeleteResponseCodes(List.of(expectedDeleteResponseCodes));
+        }
+
+        /**
+         * @param expectedResponseCodes The expected response code(s).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expectedResponseCodes(@Nullable Output<List<String>> expectedResponseCodes) {
+            $.expectedResponseCodes = expectedResponseCodes;
+            return this;
+        }
+
+        /**
+         * @param expectedResponseCodes The expected response code(s).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expectedResponseCodes(List<String> expectedResponseCodes) {
+            return expectedResponseCodes(Output.of(expectedResponseCodes));
+        }
+
+        /**
+         * @param expectedResponseCodes The expected response code(s).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expectedResponseCodes(String... expectedResponseCodes) {
+            return expectedResponseCodes(List.of(expectedResponseCodes));
         }
 
         /**
@@ -713,18 +807,18 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param responseCodes The expected response code.
+         * @param responseCodes The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
          * 
          * @return builder
          * 
          */
-        public Builder responseCodes(Output<List<String>> responseCodes) {
+        public Builder responseCodes(@Nullable Output<List<String>> responseCodes) {
             $.responseCodes = responseCodes;
             return this;
         }
 
         /**
-         * @param responseCodes The expected response code.
+         * @param responseCodes The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
          * 
          * @return builder
          * 
@@ -734,7 +828,7 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param responseCodes The expected response code.
+         * @param responseCodes The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
          * 
          * @return builder
          * 
@@ -767,7 +861,6 @@ public final class PurrlArgs extends com.pulumi.resources.ResourceArgs {
         public PurrlArgs build() {
             $.method = Objects.requireNonNull($.method, "expected parameter 'method' to be non-null");
             $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.responseCodes = Objects.requireNonNull($.responseCodes, "expected parameter 'responseCodes' to be non-null");
             $.url = Objects.requireNonNull($.url, "expected parameter 'url' to be non-null");
             return $;
         }

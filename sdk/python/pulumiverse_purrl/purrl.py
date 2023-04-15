@@ -16,7 +16,6 @@ class PurrlArgs:
     def __init__(__self__, *,
                  method: pulumi.Input[str],
                  name: pulumi.Input[str],
-                 response_codes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  url: pulumi.Input[str],
                  body: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
@@ -30,14 +29,16 @@ class PurrlArgs:
                  delete_method: Optional[pulumi.Input[str]] = None,
                  delete_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  delete_url: Optional[pulumi.Input[str]] = None,
+                 expected_delete_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 expected_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_tls_verify: Optional[pulumi.Input[bool]] = None,
-                 key: Optional[pulumi.Input[str]] = None):
+                 key: Optional[pulumi.Input[str]] = None,
+                 response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Purrl resource.
         :param pulumi.Input[str] method: The HTTP method to use.
         :param pulumi.Input[str] name: The name for this API call.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_codes: The expected response code.
         :param pulumi.Input[str] url: The API endpoint to call.
         :param pulumi.Input[str] body: The body of the request.
         :param pulumi.Input[str] ca_cert: The CA certificate if server cert is not signed by a trusted CA.
@@ -49,15 +50,17 @@ class PurrlArgs:
         :param pulumi.Input[bool] delete_insecure_skip_tls_verify: Skip TLS verification.
         :param pulumi.Input[str] delete_key: The client key to use for TLS verification.
         :param pulumi.Input[str] delete_method: The HTTP method to use.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] delete_response_codes: The expected response code.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delete_response_codes: The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
         :param pulumi.Input[str] delete_url: The API endpoint to call.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expected_delete_response_codes: The expected response code(s) for deletion.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expected_response_codes: The expected response code(s).
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] headers: The headers to send with the request.
         :param pulumi.Input[bool] insecure_skip_tls_verify: Skip TLS verification.
         :param pulumi.Input[str] key: The client key to use for TLS verification.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_codes: The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
         """
         pulumi.set(__self__, "method", method)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "response_codes", response_codes)
         pulumi.set(__self__, "url", url)
         if body is not None:
             pulumi.set(__self__, "body", body)
@@ -83,12 +86,18 @@ class PurrlArgs:
             pulumi.set(__self__, "delete_response_codes", delete_response_codes)
         if delete_url is not None:
             pulumi.set(__self__, "delete_url", delete_url)
+        if expected_delete_response_codes is not None:
+            pulumi.set(__self__, "expected_delete_response_codes", expected_delete_response_codes)
+        if expected_response_codes is not None:
+            pulumi.set(__self__, "expected_response_codes", expected_response_codes)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if insecure_skip_tls_verify is not None:
             pulumi.set(__self__, "insecure_skip_tls_verify", insecure_skip_tls_verify)
         if key is not None:
             pulumi.set(__self__, "key", key)
+        if response_codes is not None:
+            pulumi.set(__self__, "response_codes", response_codes)
 
     @property
     @pulumi.getter
@@ -113,18 +122,6 @@ class PurrlArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter(name="responseCodes")
-    def response_codes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        The expected response code.
-        """
-        return pulumi.get(self, "response_codes")
-
-    @response_codes.setter
-    def response_codes(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "response_codes", value)
 
     @property
     @pulumi.getter
@@ -262,7 +259,7 @@ class PurrlArgs:
     @pulumi.getter(name="deleteResponseCodes")
     def delete_response_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The expected response code.
+        The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
         """
         return pulumi.get(self, "delete_response_codes")
 
@@ -281,6 +278,30 @@ class PurrlArgs:
     @delete_url.setter
     def delete_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "delete_url", value)
+
+    @property
+    @pulumi.getter(name="expectedDeleteResponseCodes")
+    def expected_delete_response_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The expected response code(s) for deletion.
+        """
+        return pulumi.get(self, "expected_delete_response_codes")
+
+    @expected_delete_response_codes.setter
+    def expected_delete_response_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "expected_delete_response_codes", value)
+
+    @property
+    @pulumi.getter(name="expectedResponseCodes")
+    def expected_response_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The expected response code(s).
+        """
+        return pulumi.get(self, "expected_response_codes")
+
+    @expected_response_codes.setter
+    def expected_response_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "expected_response_codes", value)
 
     @property
     @pulumi.getter
@@ -318,6 +339,18 @@ class PurrlArgs:
     def key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "key", value)
 
+    @property
+    @pulumi.getter(name="responseCodes")
+    def response_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
+        """
+        return pulumi.get(self, "response_codes")
+
+    @response_codes.setter
+    def response_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "response_codes", value)
+
 
 class Purrl(pulumi.CustomResource):
     @overload
@@ -336,6 +369,8 @@ class Purrl(pulumi.CustomResource):
                  delete_method: Optional[pulumi.Input[str]] = None,
                  delete_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  delete_url: Optional[pulumi.Input[str]] = None,
+                 expected_delete_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 expected_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_tls_verify: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -359,14 +394,16 @@ class Purrl(pulumi.CustomResource):
         :param pulumi.Input[bool] delete_insecure_skip_tls_verify: Skip TLS verification.
         :param pulumi.Input[str] delete_key: The client key to use for TLS verification.
         :param pulumi.Input[str] delete_method: The HTTP method to use.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] delete_response_codes: The expected response code.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delete_response_codes: The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
         :param pulumi.Input[str] delete_url: The API endpoint to call.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expected_delete_response_codes: The expected response code(s) for deletion.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expected_response_codes: The expected response code(s).
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] headers: The headers to send with the request.
         :param pulumi.Input[bool] insecure_skip_tls_verify: Skip TLS verification.
         :param pulumi.Input[str] key: The client key to use for TLS verification.
         :param pulumi.Input[str] method: The HTTP method to use.
         :param pulumi.Input[str] name: The name for this API call.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_codes: The expected response code.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_codes: The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
         :param pulumi.Input[str] url: The API endpoint to call.
         """
         ...
@@ -405,6 +442,8 @@ class Purrl(pulumi.CustomResource):
                  delete_method: Optional[pulumi.Input[str]] = None,
                  delete_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  delete_url: Optional[pulumi.Input[str]] = None,
+                 expected_delete_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 expected_response_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_tls_verify: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -433,6 +472,8 @@ class Purrl(pulumi.CustomResource):
             __props__.__dict__["delete_method"] = delete_method
             __props__.__dict__["delete_response_codes"] = delete_response_codes
             __props__.__dict__["delete_url"] = delete_url
+            __props__.__dict__["expected_delete_response_codes"] = expected_delete_response_codes
+            __props__.__dict__["expected_response_codes"] = expected_response_codes
             __props__.__dict__["headers"] = headers
             __props__.__dict__["insecure_skip_tls_verify"] = insecure_skip_tls_verify
             __props__.__dict__["key"] = key
@@ -442,8 +483,6 @@ class Purrl(pulumi.CustomResource):
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
-            if response_codes is None and not opts.urn:
-                raise TypeError("Missing required property 'response_codes'")
             __props__.__dict__["response_codes"] = response_codes
             if url is None and not opts.urn:
                 raise TypeError("Missing required property 'url'")
@@ -486,6 +525,8 @@ class Purrl(pulumi.CustomResource):
         __props__.__dict__["delete_response"] = None
         __props__.__dict__["delete_response_codes"] = None
         __props__.__dict__["delete_url"] = None
+        __props__.__dict__["expected_delete_response_codes"] = None
+        __props__.__dict__["expected_response_codes"] = None
         __props__.__dict__["headers"] = None
         __props__.__dict__["insecure_skip_tls_verify"] = None
         __props__.__dict__["key"] = None
@@ -581,7 +622,7 @@ class Purrl(pulumi.CustomResource):
     @pulumi.getter(name="deleteResponse")
     def delete_response(self) -> pulumi.Output[Optional[str]]:
         """
-        The response from the API call.
+        The response from the (delete) API call.
         """
         return pulumi.get(self, "delete_response")
 
@@ -589,7 +630,7 @@ class Purrl(pulumi.CustomResource):
     @pulumi.getter(name="deleteResponseCodes")
     def delete_response_codes(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The expected response code.
+        The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
         """
         return pulumi.get(self, "delete_response_codes")
 
@@ -600,6 +641,22 @@ class Purrl(pulumi.CustomResource):
         The API endpoint to call.
         """
         return pulumi.get(self, "delete_url")
+
+    @property
+    @pulumi.getter(name="expectedDeleteResponseCodes")
+    def expected_delete_response_codes(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The expected response code(s) for deletion.
+        """
+        return pulumi.get(self, "expected_delete_response_codes")
+
+    @property
+    @pulumi.getter(name="expectedResponseCodes")
+    def expected_response_codes(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The expected response code(s).
+        """
+        return pulumi.get(self, "expected_response_codes")
 
     @property
     @pulumi.getter
@@ -656,9 +713,9 @@ class Purrl(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="responseCodes")
-    def response_codes(self) -> pulumi.Output[Sequence[str]]:
+    def response_codes(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The expected response code.
+        The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
         """
         return pulumi.get(self, "response_codes")
 

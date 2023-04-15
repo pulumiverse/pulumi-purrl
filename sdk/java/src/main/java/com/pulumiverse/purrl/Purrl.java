@@ -164,28 +164,28 @@ public class Purrl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.deleteMethod);
     }
     /**
-     * The response from the API call.
+     * The response from the (delete) API call.
      * 
      */
     @Export(name="deleteResponse", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> deleteResponse;
 
     /**
-     * @return The response from the API call.
+     * @return The response from the (delete) API call.
      * 
      */
     public Output<Optional<String>> deleteResponse() {
         return Codegen.optional(this.deleteResponse);
     }
     /**
-     * The expected response code.
+     * The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
      * 
      */
     @Export(name="deleteResponseCodes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> deleteResponseCodes;
 
     /**
-     * @return The expected response code.
+     * @return The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
      * 
      */
     public Output<Optional<List<String>>> deleteResponseCodes() {
@@ -204,6 +204,34 @@ public class Purrl extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> deleteUrl() {
         return Codegen.optional(this.deleteUrl);
+    }
+    /**
+     * The expected response code(s) for deletion.
+     * 
+     */
+    @Export(name="expectedDeleteResponseCodes", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> expectedDeleteResponseCodes;
+
+    /**
+     * @return The expected response code(s) for deletion.
+     * 
+     */
+    public Output<Optional<List<String>>> expectedDeleteResponseCodes() {
+        return Codegen.optional(this.expectedDeleteResponseCodes);
+    }
+    /**
+     * The expected response code(s).
+     * 
+     */
+    @Export(name="expectedResponseCodes", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> expectedResponseCodes;
+
+    /**
+     * @return The expected response code(s).
+     * 
+     */
+    public Output<Optional<List<String>>> expectedResponseCodes() {
+        return Codegen.optional(this.expectedResponseCodes);
     }
     /**
      * The headers to send with the request.
@@ -296,18 +324,18 @@ public class Purrl extends com.pulumi.resources.CustomResource {
         return this.responseCode;
     }
     /**
-     * The expected response code.
+     * The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
      * 
      */
     @Export(name="responseCodes", refs={List.class,String.class}, tree="[0,1]")
-    private Output<List<String>> responseCodes;
+    private Output</* @Nullable */ List<String>> responseCodes;
 
     /**
-     * @return The expected response code.
+     * @return The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
      * 
      */
-    public Output<List<String>> responseCodes() {
-        return this.responseCodes;
+    public Output<Optional<List<String>>> responseCodes() {
+        return Codegen.optional(this.responseCodes);
     }
     /**
      * The API endpoint to call.

@@ -77,13 +77,13 @@ namespace Pulumiverse.Purrl
         public Output<string?> DeleteMethod { get; private set; } = null!;
 
         /// <summary>
-        /// The response from the API call.
+        /// The response from the (delete) API call.
         /// </summary>
         [Output("deleteResponse")]
         public Output<string?> DeleteResponse { get; private set; } = null!;
 
         /// <summary>
-        /// The expected response code.
+        /// The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
         /// </summary>
         [Output("deleteResponseCodes")]
         public Output<ImmutableArray<string>> DeleteResponseCodes { get; private set; } = null!;
@@ -93,6 +93,18 @@ namespace Pulumiverse.Purrl
         /// </summary>
         [Output("deleteUrl")]
         public Output<string?> DeleteUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// The expected response code(s) for deletion.
+        /// </summary>
+        [Output("expectedDeleteResponseCodes")]
+        public Output<ImmutableArray<string>> ExpectedDeleteResponseCodes { get; private set; } = null!;
+
+        /// <summary>
+        /// The expected response code(s).
+        /// </summary>
+        [Output("expectedResponseCodes")]
+        public Output<ImmutableArray<string>> ExpectedResponseCodes { get; private set; } = null!;
 
         /// <summary>
         /// The headers to send with the request.
@@ -134,7 +146,7 @@ namespace Pulumiverse.Purrl
         public Output<int> ResponseCode { get; private set; } = null!;
 
         /// <summary>
-        /// The expected response code.
+        /// The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
         /// </summary>
         [Output("responseCodes")]
         public Output<ImmutableArray<string>> ResponseCodes { get; private set; } = null!;
@@ -261,7 +273,7 @@ namespace Pulumiverse.Purrl
         private InputList<string>? _deleteResponseCodes;
 
         /// <summary>
-        /// The expected response code.
+        /// The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
         /// </summary>
         public InputList<string> DeleteResponseCodes
         {
@@ -274,6 +286,30 @@ namespace Pulumiverse.Purrl
         /// </summary>
         [Input("deleteUrl")]
         public Input<string>? DeleteUrl { get; set; }
+
+        [Input("expectedDeleteResponseCodes")]
+        private InputList<string>? _expectedDeleteResponseCodes;
+
+        /// <summary>
+        /// The expected response code(s) for deletion.
+        /// </summary>
+        public InputList<string> ExpectedDeleteResponseCodes
+        {
+            get => _expectedDeleteResponseCodes ?? (_expectedDeleteResponseCodes = new InputList<string>());
+            set => _expectedDeleteResponseCodes = value;
+        }
+
+        [Input("expectedResponseCodes")]
+        private InputList<string>? _expectedResponseCodes;
+
+        /// <summary>
+        /// The expected response code(s).
+        /// </summary>
+        public InputList<string> ExpectedResponseCodes
+        {
+            get => _expectedResponseCodes ?? (_expectedResponseCodes = new InputList<string>());
+            set => _expectedResponseCodes = value;
+        }
 
         [Input("headers")]
         private InputMap<string>? _headers;
@@ -311,11 +347,11 @@ namespace Pulumiverse.Purrl
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        [Input("responseCodes", required: true)]
+        [Input("responseCodes")]
         private InputList<string>? _responseCodes;
 
         /// <summary>
-        /// The expected response code.
+        /// The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
         /// </summary>
         public InputList<string> ResponseCodes
         {

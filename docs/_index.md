@@ -76,11 +76,10 @@ purrl_command = purrl.Purrl("purrl-python", name="purrl-python",
                                 "test": "test"
                             },
                             url="https://httpbin.org/get",
-                            response_codes=[
-                                "200"],
+                            expected_response_codes=["200"],
                             delete_method="DELETE",
                             delete_url="https://httpbin.org/delete",
-                            delete_response_codes=["200"]
+                            expected_delete_response_codes=["200"]
                             )
 
 pulumi.export("response", purrl_command.response)

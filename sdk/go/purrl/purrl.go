@@ -35,12 +35,16 @@ type Purrl struct {
 	DeleteKey pulumi.StringPtrOutput `pulumi:"deleteKey"`
 	// The HTTP method to use.
 	DeleteMethod pulumi.StringPtrOutput `pulumi:"deleteMethod"`
-	// The response from the API call.
+	// The response from the (delete) API call.
 	DeleteResponse pulumi.StringPtrOutput `pulumi:"deleteResponse"`
-	// The expected response code.
+	// The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
 	DeleteResponseCodes pulumi.StringArrayOutput `pulumi:"deleteResponseCodes"`
 	// The API endpoint to call.
 	DeleteUrl pulumi.StringPtrOutput `pulumi:"deleteUrl"`
+	// The expected response code(s) for deletion.
+	ExpectedDeleteResponseCodes pulumi.StringArrayOutput `pulumi:"expectedDeleteResponseCodes"`
+	// The expected response code(s).
+	ExpectedResponseCodes pulumi.StringArrayOutput `pulumi:"expectedResponseCodes"`
 	// The headers to send with the request.
 	Headers pulumi.StringMapOutput `pulumi:"headers"`
 	// Skip TLS verification.
@@ -54,7 +58,7 @@ type Purrl struct {
 	// The response from the API call.
 	Response     pulumi.StringOutput `pulumi:"response"`
 	ResponseCode pulumi.IntOutput    `pulumi:"responseCode"`
-	// The expected response code.
+	// The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
 	ResponseCodes pulumi.StringArrayOutput `pulumi:"responseCodes"`
 	// The API endpoint to call.
 	Url pulumi.StringOutput `pulumi:"url"`
@@ -72,9 +76,6 @@ func NewPurrl(ctx *pulumi.Context,
 	}
 	if args.Name == nil {
 		return nil, errors.New("invalid value for required argument 'Name'")
-	}
-	if args.ResponseCodes == nil {
-		return nil, errors.New("invalid value for required argument 'ResponseCodes'")
 	}
 	if args.Url == nil {
 		return nil, errors.New("invalid value for required argument 'Url'")
@@ -132,10 +133,14 @@ type purrlArgs struct {
 	DeleteKey *string `pulumi:"deleteKey"`
 	// The HTTP method to use.
 	DeleteMethod *string `pulumi:"deleteMethod"`
-	// The expected response code.
+	// The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
 	DeleteResponseCodes []string `pulumi:"deleteResponseCodes"`
 	// The API endpoint to call.
 	DeleteUrl *string `pulumi:"deleteUrl"`
+	// The expected response code(s) for deletion.
+	ExpectedDeleteResponseCodes []string `pulumi:"expectedDeleteResponseCodes"`
+	// The expected response code(s).
+	ExpectedResponseCodes []string `pulumi:"expectedResponseCodes"`
 	// The headers to send with the request.
 	Headers map[string]string `pulumi:"headers"`
 	// Skip TLS verification.
@@ -146,7 +151,7 @@ type purrlArgs struct {
 	Method string `pulumi:"method"`
 	// The name for this API call.
 	Name string `pulumi:"name"`
-	// The expected response code.
+	// The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
 	ResponseCodes []string `pulumi:"responseCodes"`
 	// The API endpoint to call.
 	Url string `pulumi:"url"`
@@ -174,10 +179,14 @@ type PurrlArgs struct {
 	DeleteKey pulumi.StringPtrInput
 	// The HTTP method to use.
 	DeleteMethod pulumi.StringPtrInput
-	// The expected response code.
+	// The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
 	DeleteResponseCodes pulumi.StringArrayInput
 	// The API endpoint to call.
 	DeleteUrl pulumi.StringPtrInput
+	// The expected response code(s) for deletion.
+	ExpectedDeleteResponseCodes pulumi.StringArrayInput
+	// The expected response code(s).
+	ExpectedResponseCodes pulumi.StringArrayInput
 	// The headers to send with the request.
 	Headers pulumi.StringMapInput
 	// Skip TLS verification.
@@ -188,7 +197,7 @@ type PurrlArgs struct {
 	Method pulumi.StringInput
 	// The name for this API call.
 	Name pulumi.StringInput
-	// The expected response code.
+	// The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
 	ResponseCodes pulumi.StringArrayInput
 	// The API endpoint to call.
 	Url pulumi.StringInput
@@ -331,12 +340,12 @@ func (o PurrlOutput) DeleteMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.DeleteMethod }).(pulumi.StringPtrOutput)
 }
 
-// The response from the API call.
+// The response from the (delete) API call.
 func (o PurrlOutput) DeleteResponse() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.DeleteResponse }).(pulumi.StringPtrOutput)
 }
 
-// The expected response code.
+// The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
 func (o PurrlOutput) DeleteResponseCodes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringArrayOutput { return v.DeleteResponseCodes }).(pulumi.StringArrayOutput)
 }
@@ -344,6 +353,16 @@ func (o PurrlOutput) DeleteResponseCodes() pulumi.StringArrayOutput {
 // The API endpoint to call.
 func (o PurrlOutput) DeleteUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringPtrOutput { return v.DeleteUrl }).(pulumi.StringPtrOutput)
+}
+
+// The expected response code(s) for deletion.
+func (o PurrlOutput) ExpectedDeleteResponseCodes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.StringArrayOutput { return v.ExpectedDeleteResponseCodes }).(pulumi.StringArrayOutput)
+}
+
+// The expected response code(s).
+func (o PurrlOutput) ExpectedResponseCodes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.StringArrayOutput { return v.ExpectedResponseCodes }).(pulumi.StringArrayOutput)
 }
 
 // The headers to send with the request.
@@ -380,7 +399,7 @@ func (o PurrlOutput) ResponseCode() pulumi.IntOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.IntOutput { return v.ResponseCode }).(pulumi.IntOutput)
 }
 
-// The expected response code.
+// The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
 func (o PurrlOutput) ResponseCodes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringArrayOutput { return v.ResponseCodes }).(pulumi.StringArrayOutput)
 }

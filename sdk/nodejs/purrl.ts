@@ -75,17 +75,25 @@ export class Purrl extends pulumi.CustomResource {
      */
     public readonly deleteMethod!: pulumi.Output<string | undefined>;
     /**
-     * The response from the API call.
+     * The response from the (delete) API call.
      */
     public /*out*/ readonly deleteResponse!: pulumi.Output<string | undefined>;
     /**
-     * The expected response code.
+     * The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
      */
     public readonly deleteResponseCodes!: pulumi.Output<string[] | undefined>;
     /**
      * The API endpoint to call.
      */
     public readonly deleteUrl!: pulumi.Output<string | undefined>;
+    /**
+     * The expected response code(s) for deletion.
+     */
+    public readonly expectedDeleteResponseCodes!: pulumi.Output<string[] | undefined>;
+    /**
+     * The expected response code(s).
+     */
+    public readonly expectedResponseCodes!: pulumi.Output<string[] | undefined>;
     /**
      * The headers to send with the request.
      */
@@ -112,9 +120,9 @@ export class Purrl extends pulumi.CustomResource {
     public /*out*/ readonly response!: pulumi.Output<string>;
     public /*out*/ readonly responseCode!: pulumi.Output<number>;
     /**
-     * The expected response code.
+     * The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
      */
-    public readonly responseCodes!: pulumi.Output<string[]>;
+    public readonly responseCodes!: pulumi.Output<string[] | undefined>;
     /**
      * The API endpoint to call.
      */
@@ -137,9 +145,6 @@ export class Purrl extends pulumi.CustomResource {
             if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            if ((!args || args.responseCodes === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'responseCodes'");
-            }
             if ((!args || args.url === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
@@ -155,6 +160,8 @@ export class Purrl extends pulumi.CustomResource {
             resourceInputs["deleteMethod"] = args ? args.deleteMethod : undefined;
             resourceInputs["deleteResponseCodes"] = args ? args.deleteResponseCodes : undefined;
             resourceInputs["deleteUrl"] = args ? args.deleteUrl : undefined;
+            resourceInputs["expectedDeleteResponseCodes"] = args ? args.expectedDeleteResponseCodes : undefined;
+            resourceInputs["expectedResponseCodes"] = args ? args.expectedResponseCodes : undefined;
             resourceInputs["headers"] = args ? args.headers : undefined;
             resourceInputs["insecureSkipTLSVerify"] = args ? args.insecureSkipTLSVerify : undefined;
             resourceInputs["key"] = args ? args.key : undefined;
@@ -179,6 +186,8 @@ export class Purrl extends pulumi.CustomResource {
             resourceInputs["deleteResponse"] = undefined /*out*/;
             resourceInputs["deleteResponseCodes"] = undefined /*out*/;
             resourceInputs["deleteUrl"] = undefined /*out*/;
+            resourceInputs["expectedDeleteResponseCodes"] = undefined /*out*/;
+            resourceInputs["expectedResponseCodes"] = undefined /*out*/;
             resourceInputs["headers"] = undefined /*out*/;
             resourceInputs["insecureSkipTLSVerify"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;
@@ -239,13 +248,21 @@ export interface PurrlArgs {
      */
     deleteMethod?: pulumi.Input<string>;
     /**
-     * The expected response code.
+     * The expected response code(s) for deletion. Deprecated -- use `expectedDeleteResponseCodes` instead.
      */
     deleteResponseCodes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The API endpoint to call.
      */
     deleteUrl?: pulumi.Input<string>;
+    /**
+     * The expected response code(s) for deletion.
+     */
+    expectedDeleteResponseCodes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The expected response code(s).
+     */
+    expectedResponseCodes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The headers to send with the request.
      */
@@ -267,9 +284,9 @@ export interface PurrlArgs {
      */
     name: pulumi.Input<string>;
     /**
-     * The expected response code.
+     * The expected response code(s). Deprecated -- use `expectedResponseCodes` instead.
      */
-    responseCodes: pulumi.Input<pulumi.Input<string>[]>;
+    responseCodes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The API endpoint to call.
      */

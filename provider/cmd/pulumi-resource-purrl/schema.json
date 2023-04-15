@@ -97,15 +97,31 @@
                     "type": "string"
                 },
                 "deleteResponseCodes": {
-                    "description": "The expected response code.",
+                    "description": "The expected response code(s) for deletion.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array",
+                    "deprecationMessage": "Use `expectedDeleteResponseCodes` instead."
+
+                },
+                "deleteUrl": {
+                    "description": "The API endpoint to call.",
+                    "type": "string"
+                },
+                "expectedDeleteResponseCodes": {
+                    "description": "The expected response code(s) for deletion.",
                     "items": {
                         "type": "string"
                     },
                     "type": "array"
                 },
-                "deleteUrl": {
-                    "description": "The API endpoint to call.",
-                    "type": "string"
+                "expectedResponseCodes": {
+                    "description": "The expected response code(s).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
                 },
                 "headers": {
                     "additionalProperties": {
@@ -131,11 +147,12 @@
                     "type": "string"
                 },
                 "responseCodes": {
-                    "description": "The expected response code.",
+                    "description": "The expected response code(s).",
                     "items": {
                         "type": "string"
                     },
-                    "type": "array"
+                    "type": "array",
+                    "deprecationMessage": "Use `expectedResponseCodes` instead."
                 },
                 "url": {
                     "description": "The API endpoint to call.",
@@ -187,19 +204,34 @@
                     "type": "string"
                 },
                 "deleteResponse": {
-                    "description": "The response from the API call.",
+                    "description": "The response from the (delete) API call.",
                     "type": "string"
                 },
                 "deleteResponseCodes": {
-                    "description": "The expected response code.",
+                    "description": "The expected response code(s) for deletion.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array",
+                    "deprecationMessage": "Use `expectedDeleteResponseCodes` instead."
+                },
+                "deleteUrl": {
+                    "description": "The API endpoint to call.",
+                    "type": "string"
+                },
+                "expectedDeleteResponseCodes": {
+                    "description": "The expected response code(s) for deletion.",
                     "items": {
                         "type": "string"
                     },
                     "type": "array"
                 },
-                "deleteUrl": {
-                    "description": "The API endpoint to call.",
-                    "type": "string"
+                "expectedResponseCodes": {
+                    "description": "The expected response code(s).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
                 },
                 "headers": {
                     "additionalProperties": {
@@ -232,11 +264,12 @@
                     "type": "integer"
                 },
                 "responseCodes": {
-                    "description": "The expected response code.",
+                    "description": "The expected response code(s).",
                     "items": {
                         "type": "string"
                     },
-                    "type": "array"
+                    "type": "array",
+                    "deprecationMessage": "Use `expectedResponseCodes` instead."
                 },
                 "url": {
                     "description": "The API endpoint to call.",
@@ -247,15 +280,13 @@
                 "name",
                 "url",
                 "method",
-                "responseCodes",
                 "response",
                 "responseCode"
             ],
             "requiredInputs": [
                 "name",
                 "url",
-                "method",
-                "responseCodes"
+                "method"
             ]
         }
     }
