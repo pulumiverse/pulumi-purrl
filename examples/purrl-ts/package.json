@@ -6,6 +6,6 @@
     },
     "dependencies": {
         "@pulumi/pulumi": "3.50.0",
-        "@pulumiverse/purrl": "0.2.5"
+        "@pulumiverse/purrl": "^0.3.1"
     }
 }

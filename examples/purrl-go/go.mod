@@ -3,7 +3,7 @@ module pucurl-go
 go 1.20
 
 require (
-	github.com/pulumi/pulumi/sdk/v3 v3.56.0
+	github.com/pulumi/pulumi/sdk/v3 v3.64.0
 	github.com/pulumiverse/pulumi-purrl/sdk v0.1.0
 )
 

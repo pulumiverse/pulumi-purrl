@@ -7,7 +7,7 @@ import (
 
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
-		purrl, err := purrl.NewPurrl(ctx, "purrl", &purrl.PurrlArgs{
+		purrlCommand, err := purrl.NewPurrl(ctx, "httpbin", &purrl.PurrlArgs{
 			Url:  pulumi.String("https://httpbin.org/get"),
 			Name: pulumi.String("httpbin"),
 			ResponseCodes: pulumi.StringArray{
@@ -26,7 +26,7 @@ func main() {
 		if err != nil {
 			return err
 		}
-		ctx.Export("response", purrl.Response)
+		ctx.Export("actual response code", purrlCommand.ResponseCode)
 		return nil
 	})
 }
