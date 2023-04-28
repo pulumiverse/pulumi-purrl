@@ -17,4 +17,4 @@ let purrlCommand = new purrl.Purrl("purrl", {
     ],
 });
 
-export const response = purrlCommand.response
+export const response = purrlCommand.responseCode
