@@ -130,6 +130,9 @@ namespace Pulumiverse.Purrl
         [Output("response")]
         public Output<string> Response { get; private set; } = null!;
 
+        [Output("responseCode")]
+        public Output<int> ResponseCode { get; private set; } = null!;
+
         /// <summary>
         /// The expected response code.
         /// </summary>

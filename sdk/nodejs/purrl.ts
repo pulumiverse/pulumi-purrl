@@ -110,6 +110,7 @@ export class Purrl extends pulumi.CustomResource {
      * The response from the API call.
      */
     public /*out*/ readonly response!: pulumi.Output<string>;
+    public /*out*/ readonly responseCode!: pulumi.Output<number>;
     /**
      * The expected response code.
      */
@@ -163,6 +164,7 @@ export class Purrl extends pulumi.CustomResource {
             resourceInputs["url"] = args ? args.url : undefined;
             resourceInputs["deleteResponse"] = undefined /*out*/;
             resourceInputs["response"] = undefined /*out*/;
+            resourceInputs["responseCode"] = undefined /*out*/;
         } else {
             resourceInputs["body"] = undefined /*out*/;
             resourceInputs["caCert"] = undefined /*out*/;
@@ -183,6 +185,7 @@ export class Purrl extends pulumi.CustomResource {
             resourceInputs["method"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["response"] = undefined /*out*/;
+            resourceInputs["responseCode"] = undefined /*out*/;
             resourceInputs["responseCodes"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;
         }

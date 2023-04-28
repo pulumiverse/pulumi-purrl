@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumiverse.purrl.PurrlArgs;
 import com.pulumiverse.purrl.Utilities;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -287,6 +288,12 @@ public class Purrl extends com.pulumi.resources.CustomResource {
      */
     public Output<String> response() {
         return this.response;
+    }
+    @Export(name="responseCode", refs={Integer.class}, tree="[0]")
+    private Output<Integer> responseCode;
+
+    public Output<Integer> responseCode() {
+        return this.responseCode;
     }
     /**
      * The expected response code.

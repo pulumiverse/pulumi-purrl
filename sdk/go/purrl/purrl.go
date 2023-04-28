@@ -52,7 +52,8 @@ type Purrl struct {
 	// The name for this API call.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The response from the API call.
-	Response pulumi.StringOutput `pulumi:"response"`
+	Response     pulumi.StringOutput `pulumi:"response"`
+	ResponseCode pulumi.IntOutput    `pulumi:"responseCode"`
 	// The expected response code.
 	ResponseCodes pulumi.StringArrayOutput `pulumi:"responseCodes"`
 	// The API endpoint to call.
@@ -373,6 +374,10 @@ func (o PurrlOutput) Name() pulumi.StringOutput {
 // The response from the API call.
 func (o PurrlOutput) Response() pulumi.StringOutput {
 	return o.ApplyT(func(v *Purrl) pulumi.StringOutput { return v.Response }).(pulumi.StringOutput)
+}
+
+func (o PurrlOutput) ResponseCode() pulumi.IntOutput {
+	return o.ApplyT(func(v *Purrl) pulumi.IntOutput { return v.ResponseCode }).(pulumi.IntOutput)
 }
 
 // The expected response code.
