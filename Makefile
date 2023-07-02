@@ -84,7 +84,7 @@ java_sdk::
 		gradle --console=plain build
 
 .PHONY: build
-build:: codegen provider go_sdk dotnet_sdk nodejs_sdk python_sdk java_sdk
+build:: codegen provider go_sdk dotnet_sdk nodejs_sdk python_sdk #java_sdk
 
 # Required for the codegen action that runs in pulumi/pulumi
 only_build:: build

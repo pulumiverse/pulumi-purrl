@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: write
-
+  id-token: write
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -40,6 +40,8 @@ jobs:
           repo: pulumi/pulumictl
       - name: Set PreRelease Version
         run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
+      - uses: sigstore/cosign-installer@d13028333d784fcc802b67ec924bcebe75aa0a5f # v3.1.0
+      - uses: anchore/sbom-action/download-syft@78fc58e266e87a38d4194b2137a3d4e9bcaf7ca1 # v0.14.3
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@336e29918d653399e599bfca99fadc1d7ffbc9f7 # tag=v4.3.0
         with:
@@ -116,6 +118,7 @@ jobs:
           access: "public"
           token: ${{ env.NPM_TOKEN }}
           package: ${{github.workspace}}/sdk/nodejs/bin/package.json
+          provenance: true
       - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
         name: publish nuget package
         run: |
@@ -134,6 +137,6 @@ jobs:
           - dotnet
           - go
         nodeversion:
-          - 16.x
+          - 18.x
         pythonversion:
           - "3.9"
