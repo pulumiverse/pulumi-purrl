@@ -9,6 +9,8 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/pulumiverse/pulumi-purrl/sdk/go/purrl/internal"
 )
 
 // A Pulumi provider for making API calls
@@ -79,7 +81,7 @@ func NewPurrl(ctx *pulumi.Context,
 	if args.Url == nil {
 		return nil, errors.New("invalid value for required argument 'Url'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Purrl
 	err := ctx.RegisterResource("purrl:index:Purrl", name, args, &resource, opts...)
 	if err != nil {
@@ -217,6 +219,12 @@ func (i *Purrl) ToPurrlOutputWithContext(ctx context.Context) PurrlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PurrlOutput)
 }
 
+func (i *Purrl) ToOutput(ctx context.Context) pulumix.Output[*Purrl] {
+	return pulumix.Output[*Purrl]{
+		OutputState: i.ToPurrlOutputWithContext(ctx).OutputState,
+	}
+}
+
 // PurrlArrayInput is an input type that accepts PurrlArray and PurrlArrayOutput values.
 // You can construct a concrete instance of `PurrlArrayInput` via:
 //
@@ -240,6 +248,12 @@ func (i PurrlArray) ToPurrlArrayOutput() PurrlArrayOutput {
 
 func (i PurrlArray) ToPurrlArrayOutputWithContext(ctx context.Context) PurrlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PurrlArrayOutput)
+}
+
+func (i PurrlArray) ToOutput(ctx context.Context) pulumix.Output[[]*Purrl] {
+	return pulumix.Output[[]*Purrl]{
+		OutputState: i.ToPurrlArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // PurrlMapInput is an input type that accepts PurrlMap and PurrlMapOutput values.
@@ -267,6 +281,12 @@ func (i PurrlMap) ToPurrlMapOutputWithContext(ctx context.Context) PurrlMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(PurrlMapOutput)
 }
 
+func (i PurrlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Purrl] {
+	return pulumix.Output[map[string]*Purrl]{
+		OutputState: i.ToPurrlMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type PurrlOutput struct{ *pulumi.OutputState }
 
 func (PurrlOutput) ElementType() reflect.Type {
@@ -279,6 +299,12 @@ func (o PurrlOutput) ToPurrlOutput() PurrlOutput {
 
 func (o PurrlOutput) ToPurrlOutputWithContext(ctx context.Context) PurrlOutput {
 	return o
+}
+
+func (o PurrlOutput) ToOutput(ctx context.Context) pulumix.Output[*Purrl] {
+	return pulumix.Output[*Purrl]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The body of the request.
@@ -404,6 +430,12 @@ func (o PurrlArrayOutput) ToPurrlArrayOutputWithContext(ctx context.Context) Pur
 	return o
 }
 
+func (o PurrlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Purrl] {
+	return pulumix.Output[[]*Purrl]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PurrlArrayOutput) Index(i pulumi.IntInput) PurrlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Purrl {
 		return vs[0].([]*Purrl)[vs[1].(int)]
@@ -422,6 +454,12 @@ func (o PurrlMapOutput) ToPurrlMapOutput() PurrlMapOutput {
 
 func (o PurrlMapOutput) ToPurrlMapOutputWithContext(ctx context.Context) PurrlMapOutput {
 	return o
+}
+
+func (o PurrlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Purrl] {
+	return pulumix.Output[map[string]*Purrl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PurrlMapOutput) MapIndex(k pulumi.StringInput) PurrlOutput {

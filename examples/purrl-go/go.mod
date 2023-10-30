@@ -3,7 +3,7 @@ module pucurl-go
 go 1.20
 
 require (
-	github.com/pulumi/pulumi/sdk/v3 v3.89.0
+	github.com/pulumi/pulumi/sdk/v3 v3.91.1
 	github.com/pulumiverse/pulumi-purrl/sdk v0.4.1
 )
 
@@ -56,7 +56,7 @@ require (
 	github.com/pjbgf/sha1cd v0.3.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pkg/term v1.1.0 // indirect
-	github.com/pulumi/esc v0.5.2 // indirect
+	github.com/pulumi/esc v0.5.6 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
