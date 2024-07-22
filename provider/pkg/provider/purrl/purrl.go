@@ -7,12 +7,12 @@ import (
 	"crypto/x509"
 	"errors"
 	"fmt"
-	p "github.com/pulumi/pulumi-go-provider"
-	"github.com/pulumi/pulumi-go-provider/infer"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"io"
 	"net/http"
+
+	p "github.com/pulumi/pulumi-go-provider"
+	"github.com/pulumi/pulumi-go-provider/infer"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 )
 
 type Purrl struct{}
@@ -26,7 +26,7 @@ var _ = (infer.CustomUpdate[PurrlInputs, PurrlOutputs])((*Purrl)(nil))
 var _ = (infer.CustomDelete[PurrlOutputs])((*Purrl)(nil))
 var _ = (infer.ExplicitDependencies[PurrlInputs, PurrlOutputs])((*Purrl)(nil))
 
-func (c *Purrl) Create(ctx p.Context, name string, input PurrlInputs, preview bool) (string, PurrlOutputs, error) {
+func (c *Purrl) Create(ctx context.Context, name string, input PurrlInputs, preview bool) (string, PurrlOutputs, error) {
 	state := PurrlOutputs{PurrlInputs: input, Response: strPtr("")}
 	var id string
 	id, err := resource.NewUniqueHex(name, 8, 0)
@@ -151,7 +151,7 @@ func responseCodeChecker(s []string, str string) bool {
 	return false
 }
 
-func (c *Purrl) Update(ctx p.Context, id string, olds PurrlOutputs,
+func (c *Purrl) Update(ctx context.Context, id string, olds PurrlOutputs,
 	news PurrlInputs, preview bool) (PurrlOutputs, error) {
 	state := PurrlOutputs{PurrlInputs: news}
 	// If in preview, don't run the command.
@@ -168,7 +168,7 @@ func (c *Purrl) Update(ctx p.Context, id string, olds PurrlOutputs,
 	return state, nil
 }
 
-func (c *Purrl) Delete(ctx p.Context, id string, props PurrlOutputs) error {
+func (c *Purrl) Delete(ctx context.Context, id string, props PurrlOutputs) error {
 
 	// if delete props are not set, we do nothing
 	if props.DeleteMethod == nil || props.DeleteURL == nil || props.DeleteResponseCodes == nil {
@@ -180,7 +180,7 @@ func (c *Purrl) Delete(ctx p.Context, id string, props PurrlOutputs) error {
 	if err != nil {
 		return err
 	}
-	ctx.Logf(diag.Debug, "delete response: %s %s", *code, *deleteResponse)
+	p.GetLogger(ctx).Debugf("delete response: %d %s", *code, *deleteResponse)
 
 	return nil
 }
