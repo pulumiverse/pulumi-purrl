@@ -18,7 +18,7 @@ def readme():
 
 
 setup(name='pulumiverse_purrl',
-      python_requires='>=3.7',
+      python_requires='>=3.8',
       version=VERSION,
       description="A Pulumi native provider for making API calls",
       long_description=readme(),

@@ -26,7 +26,7 @@ func main() {
 		if err != nil {
 			return err
 		}
-		ctx.Export("actual response code", purrlCommand.ResponseCode)
+		ctx.Export("actual response code", purrlCommand.ResponseCodes)
 		return nil
 	})
 }
