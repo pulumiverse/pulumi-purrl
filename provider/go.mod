@@ -1,7 +1,8 @@
 module github.com/pulumiverse/pulumi-purrl/provider
 
-go 1.21
-toolchain go1.22.5
+go 1.22
+
+toolchain go1.23.3
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
