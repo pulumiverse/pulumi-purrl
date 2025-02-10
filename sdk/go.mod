@@ -1,6 +1,8 @@
 module github.com/pulumiverse/pulumi-purrl/sdk
 
-go 1.20
+go 1.22
+
+toolchain go1.23.3
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
