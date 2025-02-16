@@ -87,7 +87,7 @@ jobs:
           node-version: ${{matrix.nodeversion}}
           registry-url: ${{env.NPM_REGISTRY_URL}}
       - name: Setup DotNet
-        uses: actions/setup-dotnet@6bd8b7f7774af54e05809fcc5431931b3eb1ddee # tag=v2.1.0
+        uses: actions/setup-dotnet@3951f0dfe7a07e2313ec93c75700083e2005cbab # tag=v2.1.0
         with:
           dotnet-version: ${{matrix.dotnetverson}}
       - name: Setup Python
