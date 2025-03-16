@@ -2,11 +2,9 @@ module github.com/pulumiverse/pulumi-purrl/sdk
 
 go 1.22
 
-toolchain go1.23.3
-
 require (
 	github.com/blang/semver v3.5.1+incompatible
-	github.com/pulumi/pulumi/sdk/v3 v3.149.0
+	github.com/pulumi/pulumi/sdk/v3 v3.156.0
 )
 
 require (
